@@ -1,9 +1,9 @@
 # This is the makefile for the game #
 
 #this will expand
-OBJS = main.o input.o charBase.o player.o monster.o space.o map.o 6iiDrive.o
+OBJS = main.o input.o game.o charBase.o player.o monster.o space.o map.o 6iiDrive.o
 CC = g++
-DEBUG = -g -ansi -pedantic-errors
+DEBUG = -std=c++0x -g -ansi -pedantic-errors 
 CFLAGS = -Wall -c $(DEBUG)
 LFLAGS = -Wall $(DEBUG)
 
@@ -21,6 +21,9 @@ space.o : map/space.h map/space.cpp
 map.o : map/map.cpp map/map.h player.h 
 	$(CC) $(CFLAGS) $(DEBUG) map/map.cpp
 
+game.o : game.cpp game.h player.h monster.h
+	$(CC) $(CFLAGS) $(DEBUG) game.cpp
+
 charBase.o : charBase.cpp charBase.h
 	$(CC) $(CFLAGS) $(DEBUG) charBase.cpp
 
@@ -36,7 +39,7 @@ monster.o : monster.cpp charBase.h map/map.h monster.h
 input.o : input.h input.cpp
 	$(CC) $(CFLAGS) $(DEBUG) input.cpp
 
-main.o : main.cpp player.h map/map.h input.h monster.h
+main.o : main.cpp player.h map/map.h input.h monster.h game.h
 	$(CC) $(CFLAGS) $(DEBUG) main.cpp
 
 
