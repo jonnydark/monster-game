@@ -16,12 +16,12 @@ class Game {
     void handleGameOver();
 
   private:
-    void mainLoop();
+    void GameLoop();
     void action();
+    void CheckCurrentSpace();
     void CheckSurroundingSpaces();
     void KillPlayerByPitfall();
     void GivePlayerNewItem();
-    void status();
     void battle();
 
     unsigned int     _mapSize;

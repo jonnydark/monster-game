@@ -20,14 +20,12 @@ Game::Game(unsigned int mapSize):
 void Game::start() {
   _map.update(_player);
   std::cout << "\n\n" << _map;
-  mainLoop();
+  GameLoop();
 }
 
-void Game::mainLoop() {
+void Game::GameLoop() {
     while(!_player.dead() && !_monster.dead()) {
-     
-      // Check the player's status
-      status();
+      CheckCurrentSpace();
       if(_player.dead())
         // Gameover if the player died from pitfall
         break; 
@@ -245,15 +243,7 @@ void Game::action() {
 }
 
 
-/*
- *  This function checks if the player is dead or not and returns true
- *  or false values. If the player isn't already dead when the function
- *  is instantiated, it checks the square it landed on and prints the
- *  relevant messages. It kills the player if they landed on a pitfall.
- *  Returns true if player dead
- *  Returns false if the player is still alive
- */
-void Game::status() {
+void Game::CheckCurrentSpace() {
   // Don't want to print messages if the player died in battle already
   if(!_player.dead()) {
     if(_map.HasNormalSpaceAt(_player.getCoords())) {
@@ -486,6 +476,6 @@ void Game::GivePlayerNewItem() {
   _player.getItem(newItem); 
   std::cout << "\n\tYou got a " << _player.select(_player.invSize())->getName() << "! Awesome!\n\tCheck it out in your inventory with 'i'\n\n";
   (_map.index(_player.x(), _player.y()))->setType(dungeon_map::NormalSpace); // change back to normal space
-  // Run status again to check for pitfalls and such
-  status();
+  // Run CheckCurrentSpace again to check for pitfalls and such
+  CheckCurrentSpace();
 }
