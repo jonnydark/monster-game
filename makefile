@@ -3,9 +3,9 @@
 #this will expand
 OBJS = main.o input.o game.o charBase.o player.o monster.o space.o map.o 6iiDrive.o
 CC = g++
-DEBUG = -std=c++0x -g -ansi -pedantic-errors 
-CFLAGS = -Wall -c $(DEBUG)
-LFLAGS = -Wall $(DEBUG)
+DEBUG = -g -pedantic-errors 
+CFLAGS = -std=c++0x -Wall -c $(DEBUG)
+LFLAGS = -std=c++0x -Wall $(DEBUG)
 
 game.exe : $(OBJS)
 	$(CC) $(LFLAGS) $(OBJS) -o game.exe
@@ -40,7 +40,7 @@ input.o : input.h input.cpp
 	$(CC) $(CFLAGS) $(DEBUG) input.cpp
 
 main.o : main.cpp player.h map/map.h input.h monster.h game.h
-	$(CC) $(CFLAGS) $(DEBUG) main.cpp
+	$(CC) main.cpp $(CFLAGS) 
 
 
 

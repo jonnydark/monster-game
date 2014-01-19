@@ -78,6 +78,11 @@ class player : public charBase::character
    // 6 - iiDrive
    // 7 - timeBomb
    void getItem(unsigned int itemID);
+
+   dungeon_map::Coords NorthCoords() const;
+   dungeon_map::Coords SouthCoords() const;
+   dungeon_map::Coords WestCoords() const;
+   dungeon_map::Coords EastCoords() const;
 };
 
 #endif

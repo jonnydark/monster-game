@@ -135,4 +135,18 @@ void player::getItem(unsigned int itemID) {
   }
 }
 
+dungeon_map::Coords player::NorthCoords() const {
+  return { xPos, yPos-1 };
+}
 
+dungeon_map::Coords player::SouthCoords() const {
+  return { xPos, yPos+1 };
+}
+
+dungeon_map::Coords player::WestCoords() const {
+  return { xPos-1, yPos };
+}
+
+dungeon_map::Coords player::EastCoords() const {
+  return { xPos+1, yPos };
+}

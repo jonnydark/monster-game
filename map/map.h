@@ -20,6 +20,10 @@ namespace dungeon_map
   struct Coords {
     int x;
     int y;
+
+    bool operator==(const Coords& rhs) const {
+      return (x == rhs.x && y == rhs.y);
+    }
   };
 
   class map 

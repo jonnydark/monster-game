@@ -42,6 +42,10 @@ namespace charBase {
         return yPos;
       }
 
+      dungeon_map::Coords getCoords() const {
+        return { xPos, yPos };
+      }
+
       // Health accessor
       int hp() const {
         return health;
