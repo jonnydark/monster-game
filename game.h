@@ -19,7 +19,9 @@ class Game {
     void mainLoop();
     void action();
     void CheckSurroundingSpaces();
-    bool status();
+    void KillPlayerByPitfall();
+    void GivePlayerNewItem();
+    void status();
     void battle();
 
     unsigned int     _mapSize;

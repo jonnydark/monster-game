@@ -27,21 +27,22 @@ void Game::mainLoop() {
     while(!_player.dead() && !_monster.dead()) {
      
       // Check the player's status
-      if(status()) {
+      status();
+      if(_player.dead())
         // Gameover if the player died from pitfall
-        continue; // (Let the while loop evaluate)
-      } 
+        break; 
+
       // The player's turn
       action();
       // Are the player and the monster on the same space?
-      if(_player.x() == _monster.x() && _player.y() == _monster.y()) {
+      if(_player.getCoords() == _monster.getCoords()) {
         battle();
         continue;
       }
       // The monster's turn
       _monster.move(_map);
       // Are the player and the monster on the same space?
-      if(_player.x() == _monster.x() && _player.y() == _monster.y()) {
+      if(_player.getCoords() == _monster.getCoords()) {
         battle();
       }
 
@@ -252,38 +253,19 @@ void Game::action() {
  *  Returns true if player dead
  *  Returns false if the player is still alive
  */
-bool Game::status() {
+void Game::status() {
   // Don't want to print messages if the player died in battle already
   if(!_player.dead()) {
     if(_map.HasNormalSpaceAt(_player.getCoords())) {
       CheckSurroundingSpaces();
-      return false;
     }
     if(_map.HasPitfallAt(_player.getCoords())) {
-      _player.kill();
-      std::cout << "\n\"Caution! Falling down bottomless pits is hazardous to your health and is not\""
-           << "\nadvised...is what the sign would have said, had you bothered to read it."
-           << "\nInstead you fell head first in to the pit." 
-           << "\nNow there's some good news and some bad news:\n"
-           << "\tThe good news is, the pit isn't bottomless!\n"
-           << "\tThe bad news is, you still died when you hit the bottom\n";
-      return true;
+      KillPlayerByPitfall();
     }
     if(_map.HasItemSpaceAt(_player.getCoords())) {
-      //Item space
-      int newItem = (_map.index(_player.x(), _player.y()))->getItemID();
-
-      // Pass on the item ID to the player class
-      _player.getItem(newItem); 
-      std::cout << "\n\tYou got a " << _player.select(_player.invSize())->getName() << "! Awesome!\n\tCheck it out in your inventory with 'i'\n\n";
-      (_map.index(_player.x(), _player.y()))->setType(dungeon_map::NormalSpace); // change back to normal space
-      // Run status again to check for pitfalls
-      status();
-      return false;
-      }
+      GivePlayerNewItem();
+    }
   }
-  // If the player isn't alive, they must be dead
-  return true;
 }
 
 /*
@@ -485,4 +467,25 @@ void Game::CheckSurroundingSpaces() {
   if(_player.SouthCoords() == _monster.getCoords()) {
     std::cout << "\n\t~You can sense an evil presence to the south~\n";
   }
+}
+
+void Game::KillPlayerByPitfall() {
+  _player.kill();
+  std::cout << "\n\"Caution! Falling down bottomless pits is hazardous to your health and is not\""
+       << "\nadvised...is what the sign would have said, had you bothered to read it."
+       << "\nInstead you fell head first in to the pit." 
+       << "\nNow there's some good news and some bad news:\n"
+       << "\tThe good news is, the pit isn't bottomless!\n"
+       << "\tThe bad news is, you still died when you hit the bottom\n";
+}
+
+void Game::GivePlayerNewItem() {
+  int newItem = (_map.index(_player.x(), _player.y()))->getItemID();
+
+  // Pass on the item ID to the player class
+  _player.getItem(newItem); 
+  std::cout << "\n\tYou got a " << _player.select(_player.invSize())->getName() << "! Awesome!\n\tCheck it out in your inventory with 'i'\n\n";
+  (_map.index(_player.x(), _player.y()))->setType(dungeon_map::NormalSpace); // change back to normal space
+  // Run status again to check for pitfalls and such
+  status();
 }
