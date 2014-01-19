@@ -133,6 +133,10 @@ namespace dungeon_map
     return false;
   }
 
+  bool map::HasSafeSpaceAt(const Coords coords) const {
+    return HasItemSpaceAt(coords) || HasNormalSpaceAt(coords);
+  }
+
 
   //Insertion operator for map
   //always update the map before drawing it

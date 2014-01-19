@@ -255,36 +255,32 @@ void Game::action() {
 bool Game::status() {
   // Don't want to print messages if the player died in battle already
   if(!_player.dead()) {
-  // What type of space did the player land on?
-    switch((_map.index(_player.x(), _player.y()))->getType()) {
-      case dungeon_map::NormalSpace:
-        //Check surrounding peices
-        CheckSurroundingSpaces();
-        return false;
-        break;
-      case dungeon_map::Pitfall:
-        _player.kill();
-        std::cout << "\n\"Caution! Falling down bottomless pits is hazardous to your health and is not\""
-             << "\nadvised...is what the sign would have said, had you bothered to read it."
-             << "\nInstead you fell head first in to the pit." 
-             << "\nNow there's some good news and some bad news:\n"
-             << "\tThe good news is, the pit isn't bottomless!\n"
-             << "\tThe bad news is, you still died when you hit the bottom\n";
-        return true;
-        break;
-      case dungeon_map::ItemSpace:
-        //Item space
-        int newItem = (_map.index(_player.x(), _player.y()))->getItemID();
-
-        // Pass on the item ID to the player class
-        _player.getItem(newItem); 
-        std::cout << "\n\tYou got a " << _player.select(_player.invSize())->getName() << "! Awesome!\n\tCheck it out in your inventory with 'i'\n\n";
-        (_map.index(_player.x(), _player.y()))->setType(dungeon_map::NormalSpace); // change back to normal space
-        // Run status again to check for pitfalls
-        status();
-        return false;
-        break;
+    if(_map.HasNormalSpaceAt(_player.getCoords())) {
+      CheckSurroundingSpaces();
+      return false;
     }
+    if(_map.HasPitfallAt(_player.getCoords())) {
+      _player.kill();
+      std::cout << "\n\"Caution! Falling down bottomless pits is hazardous to your health and is not\""
+           << "\nadvised...is what the sign would have said, had you bothered to read it."
+           << "\nInstead you fell head first in to the pit." 
+           << "\nNow there's some good news and some bad news:\n"
+           << "\tThe good news is, the pit isn't bottomless!\n"
+           << "\tThe bad news is, you still died when you hit the bottom\n";
+      return true;
+    }
+    if(_map.HasItemSpaceAt(_player.getCoords())) {
+      //Item space
+      int newItem = (_map.index(_player.x(), _player.y()))->getItemID();
+
+      // Pass on the item ID to the player class
+      _player.getItem(newItem); 
+      std::cout << "\n\tYou got a " << _player.select(_player.invSize())->getName() << "! Awesome!\n\tCheck it out in your inventory with 'i'\n\n";
+      (_map.index(_player.x(), _player.y()))->setType(dungeon_map::NormalSpace); // change back to normal space
+      // Run status again to check for pitfalls
+      status();
+      return false;
+      }
   }
   // If the player isn't alive, they must be dead
   return true;
@@ -361,28 +357,28 @@ void Game::battle() {
         if(rand() % 5 != 0) { 
          // Escape, random direction
           while(!escape) {
-            int dir = rand() % 4;
-            switch(dir) {
+            int direction = rand() % 4;
+            switch(direction) {
               case 0:
-                if(_player.y() > 1 && _map.index(_player.x(), _player.y()-1)->getType() != 1) {
+                if(_map.HasSafeSpaceAt(_player.NorthCoords())) {
                   _player.move('n', _map);
                   escape = true;
                   break;
                 }
               case 1:
-                if(_player.y() < _map.getSide() && _map.index(_player.x(), _player.y()+1)->getType() != 1) {
+                if(_map.HasSafeSpaceAt(_player.SouthCoords())) {
                   _player.move('s', _map);
                   escape = true;
                   break;
                 }
               case 2:
-                if(_player.x() < _map.getSide() && _map.index(_player.x()+1, _player.y())->getType() != 1) {
+                if(_map.HasSafeSpaceAt(_player.EastCoords())) {
                   _player.move('e', _map);
                   escape = true;
                   break;
                 }
               case 3:
-                if(_player.x() > 1 && _map.index(_player.x()-1, _player.y())->getType() != 1) {
+                if(_map.HasSafeSpaceAt(_player.WestCoords())) {
                   _player.move('w', _map);
                   escape = true;
                   break;

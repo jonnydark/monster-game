@@ -58,6 +58,7 @@ namespace dungeon_map
       bool HasNormalSpaceAt(const Coords coords) const; 
       bool HasPitfallAt(const Coords coords) const; 
       bool HasItemSpaceAt(const Coords coords) const; 
+      bool HasSafeSpaceAt(const Coords coords) const;
 
       // Accessor for size
       int getSize() const { return size; }
