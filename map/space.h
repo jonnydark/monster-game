@@ -34,17 +34,19 @@
 
 namespace dungeon_map 
 {
+  enum SpaceType { NormalSpace, Pitfall, ItemSpace };
 
   class space 
   {
     protected:
-      int type, itemID; 
+      SpaceType type;
+      int itemID; 
       char out; // contains the char that is returned for map output, ' ', O, or !
       bool marked; 
 
     public:
       // constructor = needs to assign type and item if needed
-      space(): type(0), out(' '), marked(false) {}
+      space(): type(NormalSpace), out(' '), marked(false) {}
 
       // destructor - might not need to do anything
       virtual ~space() {}
@@ -66,13 +68,13 @@ namespace dungeon_map
       void unmark();
    
       //Returns the type of space this is
-      int getType() const {
+      SpaceType getType() const {
         return type;
       }
 
       // Used to set the type of the spaces. Only accepts 0 or 1
       // Use setItemID() to convert space to item space
-      void setType(unsigned int newType);
+      void setType(SpaceType newType);
      
       /*
        * All the items have a unique ID. The item ID can be passed
@@ -81,7 +83,7 @@ namespace dungeon_map
        */
       // Sets space to type 2 (item space) and sets the itemID
       void setItemID(unsigned int ID) {
-        type = 2;
+        type = ItemSpace;
         itemID = ID;
       }
 

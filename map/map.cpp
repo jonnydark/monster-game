@@ -38,8 +38,8 @@ namespace dungeon_map
       for(int i=0; i<side-3; i++) {
         // Get the address of a random space, if it isn't already a pitfall, convert it
         space * randomSpace = &spaces[rand() % (size + 1)];
-        if(randomSpace->getType() == 0) {
-          randomSpace->setType(1);
+        if(randomSpace->getType() == NormalSpace) {
+          randomSpace->setType(Pitfall);
           // randomSpace->mark();
           continue;
         }

@@ -26,13 +26,8 @@ namespace dungeon_map
   }
 
    // function to set the type of space
-  void space::setType(unsigned int newType) {
-    if(newType < 2) {
+  void space::setType(SpaceType newType) {
       type = newType;
-    } else {
-      std::cerr << "Can only use space::setType() to set to 0 or 1. Use space::setItemID to set to 2\n";
-      // ^ This is for debugging, it should never occur in the game
-    }
   }
 
    

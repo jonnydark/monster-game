@@ -260,40 +260,7 @@ bool Game::status() {
       // Regular Sapce 
       case 0: 
         //Check surrounding peices
-        if(_player.x() > 1) {
-          // Is there a pitfall nearby?
-          if((_map.index(_player.x()-1, _player.y()))->getType() == 1 ) {
-            std::cout << "\n\t~You sense a disturbance in the force...~\n";
-          }
-          // Is the monster next to you?
-          if(_player.x()-1 == _monster.x() && _player.y() == _monster.y()) {
-            std::cout << "\n\t~You can sense an evil presence to the west~\n";
-          }
-        }
-        if(_player.x() < _map.getSide()) {
-          if((_map.index(_player.x()+1, _player.y()))->getType() == 1) {
-           std::cout << "\n\t~You sense a disturbance in the force...~\n";
-          }
-          if(_player.x()+1 == _monster.x() && _player.y() == _monster.y()) {
-            std::cout << "\n\t~You can sense an evil presence to the east~\n";
-          }
-        }
-        if(_player.y() > 1) {
-          if((_map.index(_player.x(), _player.y()-1))->getType() == 1 ) {
-            std::cout << "\n\t~You sense a disturbance in the force...~\n";
-          }
-          if(_player.x() == _monster.x() && _player.y()-1 == _monster.y()) {
-            std::cout << "\n\t~You can sense an evil presence to the north~\n";
-          }
-        }
-        if(_player.y() < _map.getSide()) {
-          if((_map.index(_player.x(), _player.y()+1))->getType() == 1 ) {
-            std::cout << "\n\t~You sense a disturbance in the force...~\n";
-          }
-          if(_player.x() == _monster.x() && _player.y()+1 == _monster.y()) {
-            std::cout << "\n\t~You can sense an evil presence to the south~\n";
-          }
-        }
+        CheckSurroundingPieces();
         return false;
         break;
       case 1:
@@ -314,7 +281,7 @@ bool Game::status() {
         // Pass on the item ID to the player class
         _player.getItem(newItem); 
         std::cout << "\n\tYou got a " << _player.select(_player.invSize())->getName() << "! Awesome!\n\tCheck it out in your inventory with 'i'\n\n";
-        (_map.index(_player.x(), _player.y()))->setType(0); // change back to normal space
+        (_map.index(_player.x(), _player.y()))->setType(dungeon_map::NormalSpace); // change back to normal space
         // Run status again to check for pitfalls
         status();
         return false;
@@ -503,4 +470,41 @@ void Game::handleGameOver() {
     if(_isPlaying) {
       start();
     }
+}
+
+void Game::CheckSurroundingPieces() {
+  if(_player.x() > 1) {
+    // Is there a pitfall nearby?
+    if((_map.index(_player.x()-1, _player.y()))->getType() == 1 ) {
+      std::cout << "\n\t~You sense a disturbance in the force...~\n";
+    }
+    // Is the monster next to you?
+    if(_player.x()-1 == _monster.x() && _player.y() == _monster.y()) {
+      std::cout << "\n\t~You can sense an evil presence to the west~\n";
+    }
+  }
+  if(_player.x() < _map.getSide()) {
+    if((_map.index(_player.x()+1, _player.y()))->getType() == 1) {
+     std::cout << "\n\t~You sense a disturbance in the force...~\n";
+    }
+    if(_player.x()+1 == _monster.x() && _player.y() == _monster.y()) {
+      std::cout << "\n\t~You can sense an evil presence to the east~\n";
+    }
+  }
+  if(_player.y() > 1) {
+    if((_map.index(_player.x(), _player.y()-1))->getType() == 1 ) {
+      std::cout << "\n\t~You sense a disturbance in the force...~\n";
+    }
+    if(_player.x() == _monster.x() && _player.y()-1 == _monster.y()) {
+      std::cout << "\n\t~You can sense an evil presence to the north~\n";
+    }
+  }
+  if(_player.y() < _map.getSide()) {
+    if((_map.index(_player.x(), _player.y()+1))->getType() == 1 ) {
+      std::cout << "\n\t~You sense a disturbance in the force...~\n";
+    }
+    if(_player.x() == _monster.x() && _player.y()+1 == _monster.y()) {
+      std::cout << "\n\t~You can sense an evil presence to the south~\n";
+    }
+  }
 }
