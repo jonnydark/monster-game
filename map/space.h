@@ -45,32 +45,20 @@ namespace dungeon_map
       bool marked; 
 
     public:
-      // constructor = needs to assign type and item if needed
       space(): type(NormalSpace), out(' '), marked(false) {}
 
-      // destructor - might not need to do anything
       virtual ~space() {}
 
-      // Sets the value of the map icon
-      void set(char x) {
-        out = x;
-      }
+      void set(char x) { out = x; }
 
-      // Function returns true if marker is set
-      bool isMarked() const {
-        return marked;
-      }
-
-      // Function to set a marker
+      bool isMarked() const { return marked; }
       void mark();
-
-      //Function to remove a marker
       void unmark();
-   
-      //Returns the type of space this is
-      SpaceType getType() const {
-        return type;
-      }
+      SpaceType getType() const { return type; }
+
+      bool IsNormalSpace() { return (type == NormalSpace); }
+      bool IsItemSpace() { return (type == ItemSpace); }
+      bool IsPitfall() { return (type == Pitfall); }
 
       // Used to set the type of the spaces. Only accepts 0 or 1
       // Use setItemID() to convert space to item space
