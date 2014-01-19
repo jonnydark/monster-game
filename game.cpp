@@ -257,14 +257,12 @@ bool Game::status() {
   if(!_player.dead()) {
   // What type of space did the player land on?
     switch((_map.index(_player.x(), _player.y()))->getType()) {
-      // Regular Sapce 
-      case 0: 
+      case dungeon_map::NormalSpace:
         //Check surrounding peices
-        CheckSurroundingPieces();
+        CheckSurroundingSpaces();
         return false;
         break;
-      case 1:
-        //Pitfall, kill the player
+      case dungeon_map::Pitfall:
         _player.kill();
         std::cout << "\n\"Caution! Falling down bottomless pits is hazardous to your health and is not\""
              << "\nadvised...is what the sign would have said, had you bothered to read it."
@@ -274,7 +272,7 @@ bool Game::status() {
              << "\tThe bad news is, you still died when you hit the bottom\n";
         return true;
         break;
-      case 2:
+      case dungeon_map::ItemSpace:
         //Item space
         int newItem = (_map.index(_player.x(), _player.y()))->getItemID();
 
@@ -472,38 +470,42 @@ void Game::handleGameOver() {
     }
 }
 
-void Game::CheckSurroundingPieces() {
+void Game::CheckSurroundingSpaces() {
   if(_player.x() > 1) {
     // Is there a pitfall nearby?
-    if((_map.index(_player.x()-1, _player.y()))->getType() == 1 ) {
+    dungeon_map::Coords westOfPlayer = { _player.x()-1, _player.y() };
+    if(_map.HasPitfallAt(westOfPlayer)) {
       std::cout << "\n\t~You sense a disturbance in the force...~\n";
     }
     // Is the monster next to you?
-    if(_player.x()-1 == _monster.x() && _player.y() == _monster.y()) {
+    if(westOfPlayer.x == _monster.x() && westOfPlayer.y == _monster.y()) {
       std::cout << "\n\t~You can sense an evil presence to the west~\n";
     }
   }
   if(_player.x() < _map.getSide()) {
-    if((_map.index(_player.x()+1, _player.y()))->getType() == 1) {
+    dungeon_map::Coords eastOfPlayer = { _player.x()+1, _player.y() };
+    if(_map.HasPitfallAt(eastOfPlayer)) {
      std::cout << "\n\t~You sense a disturbance in the force...~\n";
     }
-    if(_player.x()+1 == _monster.x() && _player.y() == _monster.y()) {
+    if(eastOfPlayer.x == _monster.x() && eastOfPlayer.y == _monster.y()) {
       std::cout << "\n\t~You can sense an evil presence to the east~\n";
     }
   }
   if(_player.y() > 1) {
-    if((_map.index(_player.x(), _player.y()-1))->getType() == 1 ) {
+    dungeon_map::Coords northOfPlayer = { _player.x(), _player.y()-1 };
+    if(_map.HasPitfallAt(northOfPlayer)) {
       std::cout << "\n\t~You sense a disturbance in the force...~\n";
     }
-    if(_player.x() == _monster.x() && _player.y()-1 == _monster.y()) {
+    if(northOfPlayer.x == _monster.x() && northOfPlayer.y == _monster.y()) {
       std::cout << "\n\t~You can sense an evil presence to the north~\n";
     }
   }
   if(_player.y() < _map.getSide()) {
-    if((_map.index(_player.x(), _player.y()+1))->getType() == 1 ) {
+    dungeon_map::Coords southOfPlayer = { _player.x(), _player.y()+1 };
+    if(_map.HasPitfallAt(southOfPlayer)) {
       std::cout << "\n\t~You sense a disturbance in the force...~\n";
     }
-    if(_player.x() == _monster.x() && _player.y()+1 == _monster.y()) {
+    if(southOfPlayer.x == _monster.x() && southOfPlayer.y == _monster.y()) {
       std::cout << "\n\t~You can sense an evil presence to the south~\n";
     }
   }

@@ -18,7 +18,7 @@ class Game {
   private:
     void mainLoop();
     void action();
-    void CheckSurroundingPieces();
+    void CheckSurroundingSpaces();
     bool status();
     void battle();
 

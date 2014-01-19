@@ -15,7 +15,6 @@ char alphabet[] = "ABCDEFGHIJ";
 
 using namespace std;
 
-// putting "using namespace m_map" doesn't work with gcc
 namespace dungeon_map
 {
 
@@ -28,19 +27,12 @@ namespace dungeon_map
       size = side*side;
       spaces = new space[size];
 
-        /* Type key
-       * 0 - normal
-       * 1 - pitfall
-       * 2 - item
-       */
-      
       //make the pitfalls;
       for(int i=0; i<side-3; i++) {
         // Get the address of a random space, if it isn't already a pitfall, convert it
         space * randomSpace = &spaces[rand() % (size + 1)];
         if(randomSpace->getType() == NormalSpace) {
           randomSpace->setType(Pitfall);
-          // randomSpace->mark();
           continue;
         }
         --i;

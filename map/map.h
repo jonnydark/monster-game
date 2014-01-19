@@ -17,6 +17,10 @@ class player;
 namespace dungeon_map
 {
 
+  struct Coords {
+    int x;
+    int y;
+  };
 
   class map 
   {
@@ -45,15 +49,15 @@ namespace dungeon_map
       // Updates the map to set the player location
       void update(const player &p1); 
 
+      bool HasNormalSpaceAt(const Coords coords) const { return (index(coords.x,coords.y))->IsNormalSpace(); }
+      bool HasPitfallAt(const Coords coords) const { return (index(coords.x,coords.y))->IsPitfall(); }
+      bool HasItemSpaceAt(const int i, const int j) const { return (index(i,j))->IsItemSpace(); }
+
       // Accessor for size
-      int getSize() const {
-        return size;
-      }
+      int getSize() const { return size; }
 
       // Accessor for side
-      int getSide() const {
-        return side;
-      }
+      int getSide() const { return side; }
 
       //Overload the insertion operator to print like a matrix
       friend std::ostream & operator<<(std::ostream &disp, const map &mp);
