@@ -57,18 +57,19 @@ namespace dungeon_map
   }
 
 
-
-
   //This acesses the coordinates on the map in a more human readable fashion
-  space * map::index(const int i, const int j) const {
+  space * map::index(const int x, const int y) const {
     //size will be changed to rows if I choose to make rectangular maps possible
-    if(i > 0 && j > 0 && i <= side && j<= side) {
-      int loc = (j-1) + (i-1)*side;  
-      return &spaces[loc];
+    int loc = (y-1) + (x-1)*side;  
+    return &spaces[loc];
+  }
+
+  bool map::MaybeGetIndex(space &aSpace, const int x, const int y) const {
+    if(x > 0 && y > 0 && x <= side && y<= side) {
+      aSpace = *index(x,y); 
+      return true;
     }
-    // mostly for debugging
-    cerr << "Space doesn't exist! returning space 0,0\n";
-    return &spaces[0];
+    return false;
   }
 
 
@@ -107,6 +108,31 @@ namespace dungeon_map
     index(p1.x(), p1.y())->set('O'); 
     }
   }
+
+  bool map::HasNormalSpaceAt(const Coords coords) const {
+    space spaceToCheck;
+    if(MaybeGetIndex(spaceToCheck, coords.x, coords.y)) {
+      return spaceToCheck.IsNormalSpace(); 
+    }
+    return false;
+  }
+
+  bool map::HasPitfallAt(const Coords coords) const {
+    space spaceToCheck;
+    if(MaybeGetIndex(spaceToCheck, coords.x, coords.y)) {
+      return spaceToCheck.IsPitfall();
+    }
+    return false;
+  }
+
+  bool map::HasItemSpaceAt(const Coords coords) const {
+    space spaceToCheck;
+    if(MaybeGetIndex(spaceToCheck, coords.x, coords.y)) {
+      return spaceToCheck.IsItemSpace();
+    }
+    return false;
+  }
+
 
   //Insertion operator for map
   //always update the map before drawing it

@@ -471,42 +471,25 @@ void Game::handleGameOver() {
 }
 
 void Game::CheckSurroundingSpaces() {
-  if(_player.x() > 1) {
-    // Is there a pitfall nearby?
-    dungeon_map::Coords westOfPlayer = { _player.x()-1, _player.y() };
-    if(_map.HasPitfallAt(westOfPlayer)) {
+  dungeon_map::Coords westOfPlayer = { _player.x()-1, _player.y() };
+  dungeon_map::Coords eastOfPlayer = { _player.x()+1, _player.y() };
+  dungeon_map::Coords northOfPlayer = { _player.x(), _player.y()-1 };
+  dungeon_map::Coords southOfPlayer = { _player.x(), _player.y()+1 };
+
+  if(_map.HasPitfallAt(westOfPlayer) || _map.HasPitfallAt(eastOfPlayer)
+      || _map.HasPitfallAt(northOfPlayer) || _map.HasPitfallAt(southOfPlayer)) {
       std::cout << "\n\t~You sense a disturbance in the force...~\n";
-    }
-    // Is the monster next to you?
-    if(westOfPlayer.x == _monster.x() && westOfPlayer.y == _monster.y()) {
-      std::cout << "\n\t~You can sense an evil presence to the west~\n";
-    }
   }
-  if(_player.x() < _map.getSide()) {
-    dungeon_map::Coords eastOfPlayer = { _player.x()+1, _player.y() };
-    if(_map.HasPitfallAt(eastOfPlayer)) {
-     std::cout << "\n\t~You sense a disturbance in the force...~\n";
-    }
-    if(eastOfPlayer.x == _monster.x() && eastOfPlayer.y == _monster.y()) {
-      std::cout << "\n\t~You can sense an evil presence to the east~\n";
-    }
+  if(westOfPlayer.x == _monster.x() && westOfPlayer.y == _monster.y()) {
+    std::cout << "\n\t~You can sense an evil presence to the west~\n";
   }
-  if(_player.y() > 1) {
-    dungeon_map::Coords northOfPlayer = { _player.x(), _player.y()-1 };
-    if(_map.HasPitfallAt(northOfPlayer)) {
-      std::cout << "\n\t~You sense a disturbance in the force...~\n";
-    }
-    if(northOfPlayer.x == _monster.x() && northOfPlayer.y == _monster.y()) {
-      std::cout << "\n\t~You can sense an evil presence to the north~\n";
-    }
+  if(eastOfPlayer.x == _monster.x() && eastOfPlayer.y == _monster.y()) {
+    std::cout << "\n\t~You can sense an evil presence to the east~\n";
   }
-  if(_player.y() < _map.getSide()) {
-    dungeon_map::Coords southOfPlayer = { _player.x(), _player.y()+1 };
-    if(_map.HasPitfallAt(southOfPlayer)) {
-      std::cout << "\n\t~You sense a disturbance in the force...~\n";
-    }
-    if(southOfPlayer.x == _monster.x() && southOfPlayer.y == _monster.y()) {
-      std::cout << "\n\t~You can sense an evil presence to the south~\n";
-    }
+  if(northOfPlayer.x == _monster.x() && northOfPlayer.y == _monster.y()) {
+    std::cout << "\n\t~You can sense an evil presence to the north~\n";
+  }
+  if(southOfPlayer.x == _monster.x() && southOfPlayer.y == _monster.y()) {
+    std::cout << "\n\t~You can sense an evil presence to the south~\n";
   }
 }

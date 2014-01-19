@@ -65,9 +65,7 @@ class player : public charBase::character
    void printInventory();
 
    // Returns the size of the inventory
-   int invSize() const {
-     return inventory.size();
-   }
+   int invSize() const { return inventory.size(); }
 
    // This function adds an item to the player's inventory. It is called when the player
    // stands on an item space. All items have an ID associated with them. The ID provided

@@ -41,17 +41,19 @@ namespace dungeon_map
       }
 
       //This acesses the coordinates on the map using numerical cartesian coords
-      space * index(const int i, const int j) const;
-   
+      space * index(const int x, const int y) const;
+    
+      bool MaybeGetIndex(space &aSpace, const int x, const int y) const;
+
       // This is a more human readable accessor. Allows to pick coords out like: map('a',1)
       space * operator()(const char x, const int i) const;
 
       // Updates the map to set the player location
       void update(const player &p1); 
 
-      bool HasNormalSpaceAt(const Coords coords) const { return (index(coords.x,coords.y))->IsNormalSpace(); }
-      bool HasPitfallAt(const Coords coords) const { return (index(coords.x,coords.y))->IsPitfall(); }
-      bool HasItemSpaceAt(const int i, const int j) const { return (index(i,j))->IsItemSpace(); }
+      bool HasNormalSpaceAt(const Coords coords) const; 
+      bool HasPitfallAt(const Coords coords) const; 
+      bool HasItemSpaceAt(const Coords coords) const; 
 
       // Accessor for size
       int getSize() const { return size; }
