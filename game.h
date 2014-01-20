@@ -12,8 +12,8 @@ class Game {
     Game(const unsigned int size);
     ~Game () {}
 
-    void start();
-    void handleGameOver();
+    void Start();
+    void HandleGameOver();
 
   private:
     void GameLoop();

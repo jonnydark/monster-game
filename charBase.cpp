@@ -17,13 +17,15 @@ using namespace std;
 using namespace charBase;
 
 // map constructor - used to place a character at a random x for a given y
-character::character(dungeon_map::map &mp, int y, int h) {
-  alive = true;
-  health = h;
-  max = h;
+character::character(dungeon_map::map &mp, int y, int health) : 
+  health(health), 
+  max(health),
+  _boundry(mp.getSide()),
+  alive(true)
+{
   while(true) {
-    int x = (rand() % (mp.getSide()) + 1);
-    if((mp.index(x,y))->getType() != 1) {
+    int x = (rand() % (_boundry) + 1);
+    if(mp.HasSafeSpaceAt({x,y})) {
       xPos = x;
       yPos = y;
       break;

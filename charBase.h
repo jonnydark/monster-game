@@ -22,7 +22,7 @@ namespace charBase {
   class character
   {
     protected:
-      int health, xPos, yPos, max; 
+      int health, xPos, yPos, max, _boundry; 
       bool alive; // True if alive, false if dead
 
     public:

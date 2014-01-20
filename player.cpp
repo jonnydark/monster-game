@@ -27,44 +27,44 @@ player::~player() {
   }
 }
 
-// Directional commands
-void player::move(char d, dungeon_map::map &mp) {
-  switch(d) {
-    case 'n':
-      if(yPos > 1) {
-        yPos -= 1;
-        cout << "moved north";
-      } else {
-        cout << "\nA wise old wizard once said \"YOU SHALL NOT PASS!\" I think that advice applies here,\n there is a wall in front of you\n";
-      }
-      break;
-    case 's':
-      if(yPos < mp.getSide()) {
-        yPos += 1;
-        cout << "moved south";
-      } else {
-        cout << "\nYou just walked straight into a wall. Make an appointment at your nearest opticians,\n you may be suffering from near-sightedness\n";
-      }
-      break;
-    case 'w':
-      if(xPos > 1) {
-        xPos -= 1;
-        cout << "moved west";
-      } else {
-        cout << "\nEffects of going west can involve things appearing more delicious than they actually are,\n and disorientation. You just walked in to a wall, simmer down son.\n";
-      }
-      break;
-    case 'e':
-      if(xPos < mp.getSide()) {
-        xPos += 1;
-        cout << "moved east";
-      } else {
-        cout << "\nYeah! Fight the man! Don't let him tell you where you can and can't go! You make your own rules!\n Hit the wall harder!\n";
-      }
-      break;
-    default:
-      cout << "\nYou stood still and admired your surroundings. I wonder what the rent is on a place like this?\n";
+void player::MoveNorth() {
+  if(yPos > 1) {
+    yPos -= 1;
+    cout << "moved north";
+  } else {
+    cout << "\nA wise old wizard once said \"YOU SHALL NOT PASS!\" I think that advice applies here,\n there is a wall in front of you\n";
   }
+}
+
+void player::MoveSouth() {
+  if(yPos < _boundry) {
+    yPos += 1;
+    cout << "moved south";
+  } else {
+    cout << "\nYou just walked straight into a wall. Make an appointment at your nearest opticians,\n you may be suffering from near-sightedness\n";
+  }
+}
+
+void player::MoveWest() {
+  if(xPos > 1) {
+    xPos -= 1;
+    cout << "moved west";
+  } else {
+    cout << "\nEffects of going west can involve things appearing more delicious than they actually are,\n and disorientation. You just walked in to a wall, simmer down son.\n";
+  }
+}
+
+void player::MoveEast() {
+  if(xPos < _boundry) {
+    xPos += 1;
+    cout << "moved east";
+  } else {
+    cout << "\nYeah! Fight the man! Don't let him tell you where you can and can't go! You make your own rules!\n Hit the wall harder!\n";
+  }
+}
+
+void player::Wait() {
+  cout << "\nYou just walked straight into a wall. Make an appointment at your nearest opticians,\n you may be suffering from near-sightedness\n";
 }
 
 

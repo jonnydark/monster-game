@@ -119,20 +119,20 @@ void action(player &p, dungeon_map::map &m) {
     // Movement
     switch(in[0]){
       case 'n':
-        p.move('n', m);
+        p.MoveNorth();
         valid = true;
         break;
       case 's':
-        p.move('s', m);
+        p.MoveSouth();
         valid = true;
         break;
       case 'e':
-        p.move('e', m);
+        p.MoveEast();
         valid = true;
         break;
       case 'w':
         if(in.compare("wait") !=0 ) {
-          p.move('w', m);
+          p.MoveWest();
 	  valid = true;
           break;
         }
@@ -140,7 +140,7 @@ void action(player &p, dungeon_map::map &m) {
     
     //wait 
     if(in.compare("wait")  == 0) {
-      p.move('x', m);
+      p.Wait();
       valid = true;
     }
 
@@ -292,25 +292,25 @@ void battle(player &p, monster &m, dungeon_map::map &mp) {
             switch(dir) {
               case 0:
                 if(p.y() > 1 && mp.index(p.x(), p.y()-1)->getType() != 1) {
-                  p.move('n', mp);
+                  p.MoveNorth();
                   escape = true;
                   break;
                 }
               case 1:
                 if(p.y() < mp.getSide() && mp.index(p.x(), p.y()+1)->getType() != 1) {
-                  p.move('s', mp);
+                  p.MoveSouth();
                   escape = true;
                   break;
                 }
               case 2:
                 if(p.x() < mp.getSide() && mp.index(p.x()+1, p.y())->getType() != 1) {
-                  p.move('e', mp);
+                  p.MoveEast();
                   escape = true;
                   break;
                 }
               case 3:
                 if(p.x() > 1 && mp.index(p.x()-1, p.y())->getType() != 1) {
-                  p.move('w', mp);
+                  p.MoveWest();
                   escape = true;
                   break;
                 }

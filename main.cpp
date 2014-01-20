@@ -37,7 +37,7 @@ int main()
          << "\t===================================================================\n\n\n\t";
 
     Game currentGame(getMapSize());
-    currentGame.start();
-    currentGame.handleGameOver();
+    currentGame.Start();
+    currentGame.HandleGameOver();
      return 0;
 }

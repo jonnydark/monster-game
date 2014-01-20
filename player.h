@@ -30,10 +30,6 @@ class player : public charBase::character
     std::vector<items::item*> inventory;                  
 
   public:
-    // Constructor inherits from character base.
-    // Takes two integers to define place. 
-    // Health is set to 100 - might make this variable
-    // Constructor also prints a delightful welcome message
     player(dungeon_map::map &mp) : character(mp, mp.getSide(), 100) { 
       std::cout << "\n\n   You find yourself in the dark dungeon. It's impossible to see more than\n"
                 << "a few metres in here! Luckily you brought with you an iPhone which has \n"
@@ -51,12 +47,11 @@ class player : public charBase::character
     // Destructor - will need to delete the vector of items
     ~player();
 
-    // Movement commands - these change the values of xPos and yPos
-    // These take the character n, w, s, e for north west south east respectively
-    // It relies on values for 'side' and 'size' of the map which are accessible globally
-    // Comical error messages are printed if the player tries to move off map
-    // Defaults to waiting
-    void move(char d, dungeon_map::map &m);
+    void MoveNorth();
+    void MoveSouth();
+    void MoveEast();
+    void MoveWest();
+    void Wait();
 
    // Accessor for the inventory 
     items::item * select(unsigned int i) const;

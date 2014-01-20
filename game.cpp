@@ -17,7 +17,7 @@ Game::Game(unsigned int mapSize):
    srand((unsigned)time(NULL));
 }
 
-void Game::start() {
+void Game::Start() {
   _map.update(_player);
   std::cout << "\n\n" << _map;
   GameLoop();
@@ -150,20 +150,20 @@ void Game::action() {
     // Movement
     switch(in[0]){
       case 'n':
-        _player.move('n', _map);
+        _player.MoveNorth();
         valid = true;
         break;
       case 's':
-        _player.move('s', _map);
+        _player.MoveSouth();
         valid = true;
         break;
       case 'e':
-        _player.move('e', _map);
+        _player.MoveEast();
         valid = true;
         break;
       case 'w':
         if(in.compare("wait") !=0 ) {
-          _player.move('w', _map);
+          _player.MoveWest();
 	  valid = true;
           break;
         }
@@ -171,7 +171,7 @@ void Game::action() {
     
     //wait 
     if(in.compare("wait")  == 0) {
-      _player.move('x', _map);
+      _player.Wait();
       valid = true;
     }
 
@@ -333,25 +333,25 @@ void Game::battle() {
             switch(direction) {
               case 0:
                 if(_map.HasSafeSpaceAt(_player.NorthCoords())) {
-                  _player.move('n', _map);
+                  _player.MoveNorth();
                   escape = true;
                   break;
                 }
               case 1:
                 if(_map.HasSafeSpaceAt(_player.SouthCoords())) {
-                  _player.move('s', _map);
+                  _player.MoveSouth();
                   escape = true;
                   break;
                 }
               case 2:
                 if(_map.HasSafeSpaceAt(_player.EastCoords())) {
-                  _player.move('e', _map);
+                  _player.MoveEast();
                   escape = true;
                   break;
                 }
               case 3:
                 if(_map.HasSafeSpaceAt(_player.WestCoords())) {
-                  _player.move('w', _map);
+                  _player.MoveWest();
                   escape = true;
                   break;
                 }
@@ -408,7 +408,7 @@ void Game::battle() {
   } // End of battle loop
 } 
 
-void Game::handleGameOver() {
+void Game::HandleGameOver() {
     // Did the player die?
     if(_player.dead()) {
       std::cout << "\n\nIt seems you died. Man, that sucks.\nHere's a hint: you can do better\n\n";
@@ -434,7 +434,7 @@ void Game::handleGameOver() {
       }
     }
     if(_isPlaying) {
-      start();
+      Start();
     }
 }
 
