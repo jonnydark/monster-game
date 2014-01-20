@@ -84,7 +84,7 @@ void Game::action() {
     // This first if statement will be true for both mark and unmark commands
     if(in.find("mark")!=std::string::npos) {
       ParseCoordinatesAndMarkMap(in);
-            continue;
+      continue;
     }
 
     // let the player be able to find out their health
@@ -322,9 +322,6 @@ void Game::battle() {
       std::cout << "\n\tWhat?! This is no time for such gibberish!\n";   
     } // End of user input loop
  
-
-
-
     //If the player didn't escape and the monster isn't dead...
     if(!escape && !_monster.dead()) {
       //If the timeBomb hasn't been activated
