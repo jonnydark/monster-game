@@ -66,14 +66,12 @@ void Game::action() {
     std::cout << std::endl << ">>  ";
     getline(std::cin, in);
 
-
     // Help function
     if(in.compare("help") == 0) {
       Print::Help();
       continue;
     }
 
-    
     // Map related functions
     if(in.compare("map") == 0) {
       _map.update(_player);
@@ -82,22 +80,18 @@ void Game::action() {
       continue;
     }
    
-
     // Setting and unsetting markers
     // This first if statement will be true for both mark and unmark commands
     if(in.find("mark")!=std::string::npos) {
       ParseCoordinatesAndMarkMap(in);
             continue;
     }
-   
-
 
     // let the player be able to find out their health
     if(in.compare("health") == 0) {
       std::cout << "Health : " << _player.hp() << "/100" << "\n";
       continue;
     }
-
 
     // Movement
     switch(in[0]){
@@ -116,77 +110,34 @@ void Game::action() {
       case 'w':
         if(in.compare("wait") !=0 ) {
           _player.MoveWest();
-	  valid = true;
+          valid = true;
           break;
         }
     }
     
-    //wait 
     if(in.compare("wait")  == 0) {
       _player.Wait();
       valid = true;
     }
 
-    
     // Inventory
     if(in[0] == 'i') {
-      std::cout << "\n\nInventory:\n\n";
-      _player.printInventory();
-      std::cout << "\n\nWhich item do you want to know about? (Select a number, anything else cancels) ";
-      int i;
-      std::cin >> i;
-      // if fails, it wasn't a number or it was too big - cancel the info request 
-      if(!std::cin.fail() && i <= _player.invSize() && i > 0) {
-        // Print info
-        std::cout << "\n\n" << _player.select(i)->getInfo();
-      } else {
-        // clear the failstate
-        std::cin.clear();
-      }
-      std::cin.ignore(20, '\n');
-      
+      StartInventoryMenu();
       continue;
     }
 
     // Use an item out of battle
     if(in[0] == 'u') {
-      std::cout << "\n\nInventory:\n\n";
-      _player.printInventory();
-      std::cout << "\n\nWhich item do you want to use? (Select a number, anything else cancels) ";
-      int i;
-      std::cin >> i;
-      // Works as above
-      if(!std::cin.fail() && i <= _player.invSize() && i > 0) {
-        // Call the use function for use on the map
-        _player.select(i)->useMap(_player);
-        valid = true;
-      } else {
-        std::cin.clear();
-      }
-      std::cin.ignore(20, '\n');
+      UseItemOutOfBattle(valid);
       break;
     }
 
-
     // Quit
     if(in[0] == 'q') {
-      std::cout << "\nAre you sure you want to quit? (y/n): ";
-      std::string ans;
-      while(true) {
-        std::cin >> ans;
-        if(ans[0] == 'y') {
-          std::cout << "\nSee ya later!\n\n";
-          exit(0); // Possibly replace this with a gameOver function
-        } else if(ans[0] == 'n') {
-          std::cout << "\nYeah! Game On!\n";
-          break;
-        }
-        std::cout << "\n...Pardon? Do you want to quit? (y/n): ";
-      }
+      QuitDialogue();
       continue;
     }
 
-    
     if(valid) {
       break;
     }
@@ -208,6 +159,55 @@ void Game::CheckCurrentSpace() {
       GivePlayerNewItem();
     }
   }
+}
+
+void Game::StartInventoryMenu() {
+  _player.printInventory();
+  std::cout << "\n\nWhich item do you want to know about? (Select a number, anything else cancels) ";
+  int i;
+  std::cin >> i;
+  // if fails, it wasn't a number or it was too big - cancel the info request 
+  if(!std::cin.fail() && i <= _player.invSize() && i > 0) {
+    // Print info
+    std::cout << "\n\n" << _player.select(i)->getInfo();
+  } else {
+    // clear the failstate
+    std::cin.clear();
+  }
+  std::cin.ignore(20, '\n');
+}
+
+void Game::UseItemOutOfBattle(bool &valid) {
+  _player.printInventory();
+  std::cout << "\n\nWhich item do you want to use? (Select a number, anything else cancels) ";
+  int i;
+  std::cin >> i;
+  // Works as above
+  if(!std::cin.fail() && i <= _player.invSize() && i > 0) {
+    // Call the use function for use on the map
+    _player.select(i)->useMap(_player);
+    valid = true;
+  } else {
+    std::cin.clear();
+  }
+  std::cin.ignore(20, '\n');
+}
+
+void Game::QuitDialogue() {
+  std::cout << "\nAre you sure you want to quit? (y/n): ";
+  std::string ans;
+  while(true) {
+    std::cin >> ans;
+    if(ans[0] == 'y') {
+      std::cout << "\nSee ya later!\n\n";
+      exit(0); // Possibly replace this with a gameOver function
+    } else if(ans[0] == 'n') {
+      std::cout << "\nYeah! Game On!\n";
+      break;
+    }
+    std::cout << "\n...Pardon? Do you want to quit? (y/n): ";
+  }
+  std::cin.ignore(20, '\n');
 }
 
 /*

@@ -80,6 +80,7 @@ item * player::select(unsigned int i) const {
 
 // Function to print the entire inventory
 void player::printInventory() {
+  std::cout << "\n\nInventory:\n\n";
   int i(1);
   vector<item*>::iterator sel; // Declare an iterator sel
   for(sel = inventory.begin(); sel != inventory.end(); ++sel) {

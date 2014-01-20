@@ -20,6 +20,9 @@ class Game {
     void GameLoop();
     void action();
     void ParseCoordinatesAndMarkMap(std::string input);
+    void StartInventoryMenu();
+    void UseItemOutOfBattle(bool &valid);
+    void QuitDialogue();
     void CheckCurrentSpace();
     void CheckSurroundingSpaces();
     void KillPlayerByPitfall();
