@@ -6,7 +6,7 @@ class Print
 {
   public:
 
-    static void help() {
+    static void Help() {
       std::cout << "\n\n    Help\n"
            << "============\n"
            << "You have found yourself in a square dungeon full of sqaure rooms. There is\n"
@@ -32,8 +32,20 @@ class Print
            << "To quit the game type 'q'"
            << "\nThe rest you'll have to work out for yourself\n\n\n";
     }
+    
+    static void DeathByPitfall() {
+      std::cout << "\n\"Caution! Falling down bottomless pits is hazardous to your health and is not\""
+           << "\nadvised...is what the sign would have said, had you bothered to read it."
+           << "\nInstead you fell head first in to the pit." 
+           << "\nNow there's some good news and some bad news:\n"
+           << "\tThe good news is, the pit isn't bottomless!\n"
+           << "\tThe bad news is, you still died when you hit the bottom\n";
+    }
+
+  
 
 };
 
 
 #endif /* end of include guard: COPY_H */
+

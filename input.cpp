@@ -15,8 +15,10 @@
 /*
  * Get map size
  */
+
+
 unsigned int getMapSize() {
-  cout << "To start a new game - please enter a size of a map (4-10): ";
+  std::cout << "To start a new game - please enter a size of a map (4-10): ";
 
   while(true) {
     unsigned int mapSize;

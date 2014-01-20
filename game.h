@@ -2,6 +2,7 @@
 
 #define GAME_H
 
+#include <string>
 
 #include "player.h"
 #include "monster.h"
@@ -18,6 +19,7 @@ class Game {
   private:
     void GameLoop();
     void action();
+    void ParseCoordinatesAndMarkMap(std::string input);
     void CheckCurrentSpace();
     void CheckSurroundingSpaces();
     void KillPlayerByPitfall();

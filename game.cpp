@@ -69,7 +69,7 @@ void Game::action() {
 
     // Help function
     if(in.compare("help") == 0) {
-      Print::help();
+      Print::Help();
       continue;
     }
 
@@ -86,33 +86,8 @@ void Game::action() {
     // Setting and unsetting markers
     // This first if statement will be true for both mark and unmark commands
     if(in.find("mark")!=std::string::npos) {
-      // Find the first whitespace char
-      unsigned int ws(in.find(' ' , 1));
-      if(ws == std::string::npos) {
-        std::cout << "No, you're doing it wrong - you're meant to say something like \"mark A4\"\n";
-        continue;
-      }
-      
-      // Extract coordinates after first whitespace char and get the letter and number
-      char let;
-      int num;
-      std::stringstream coords(std::stringstream::in|std::stringstream::out);
-      coords << in.substr(ws,4); 
-      coords >> let;
-      coords >> num;
-      coords.str("");
-
-      // Check if the input was unmark or mark
-      if(in.find("unmark")!=std::string::npos){
-        std::cout << "Removing the marker at " << let << num << "\n";
-        _map(let,num)->unmark();
-      } else {
-        std::cout << "Setting marker at " << let << num << "\n";
-        _map(let,num)->mark(); 
-      }
-      _map.update(_player);
-      std::cout << _map;
-      continue;
+      ParseCoordinatesAndMarkMap(in);
+            continue;
     }
    
 
@@ -438,12 +413,7 @@ void Game::CheckSurroundingSpaces() {
 
 void Game::KillPlayerByPitfall() {
   _player.kill();
-  std::cout << "\n\"Caution! Falling down bottomless pits is hazardous to your health and is not\""
-       << "\nadvised...is what the sign would have said, had you bothered to read it."
-       << "\nInstead you fell head first in to the pit." 
-       << "\nNow there's some good news and some bad news:\n"
-       << "\tThe good news is, the pit isn't bottomless!\n"
-       << "\tThe bad news is, you still died when you hit the bottom\n";
+  Print::DeathByPitfall();
 }
 
 void Game::GivePlayerNewItem() {
@@ -455,4 +425,34 @@ void Game::GivePlayerNewItem() {
   (_map.index(_player.x(), _player.y()))->setType(dungeon_map::NormalSpace); // change back to normal space
   // Run CheckCurrentSpace again to check for pitfalls and such
   CheckCurrentSpace();
+}
+
+
+void Game::ParseCoordinatesAndMarkMap(std::string in) {
+// Find the first whitespace char
+  unsigned int ws(in.find(' ' , 1));
+  if(ws == std::string::npos) {
+    std::cout << "No, you're doing it wrong - you're meant to say something like \"mark A4\"\n";
+    return;
+  }
+  
+  // Extract coordinates after first whitespace char and get the letter and number
+  char let;
+  int num;
+  std::stringstream coords(std::stringstream::in|std::stringstream::out);
+  coords << in.substr(ws,4); 
+  coords >> let;
+  coords >> num;
+  coords.str("");
+
+  // Check if the input was unmark or mark
+  if(in.find("unmark")!=std::string::npos){
+    std::cout << "Removing the marker at " << let << num << "\n";
+    _map(let,num)->unmark();
+  } else {
+    std::cout << "Setting marker at " << let << num << "\n";
+    _map(let,num)->mark(); 
+  }
+  _map.update(_player);
+  std::cout << _map;
 }
