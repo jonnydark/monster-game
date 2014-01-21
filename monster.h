@@ -1,18 +1,18 @@
 /*
- * monster.h
+ * Monster.h
  *
  * Monster character inherits from character class
  * as defined in charBase.h
  */
 
-#ifndef MONSTER_H
-#define MONSTER_H
+#ifndef Monster_H
+#define Monster_H
 
 #include "charBase.h"
 
 class map;
 
-  class monster : public charBase::character
+  class Monster : public charBase::character
   {
     private:
     // Not sure of what other private data is needed
@@ -22,17 +22,17 @@ class map;
 
       // Standard constructor - random position along top row
       // Monster health is related to the size of the map
-      monster(dungeon_map::map &mp) : charBase::character(mp, 1, 100+2*mp.getSize()) {}
+      Monster(dungeon_map::map &mp) : charBase::character(mp, 1, 100+2*mp.getSize()) {}
 
       // Destructor
-      ~monster() {}
+      ~Monster() {}
 
       // Movement
-      // The monster can move in any direction that isn't off the map
+      // The Monster can move in any direction that isn't off the map
       // or on to a pitfall. Direction of movement is random
       void move(const dungeon_map::map &mp);
 
-      // The monster fights. This should never be called
+      // The Monster fights. This should never be called
       // outside of a battle.
       void fight(Player &p);
   };

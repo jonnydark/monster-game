@@ -45,7 +45,9 @@ void Game::GameLoop() {
         continue;
       }
       // The monster's turn
-      _monster.move(_map);
+      if(_timeBombTime > 0) {
+        _monster.move(_map);
+      }
       // Are the player and the monster on the same space?
       if(_player.Coords() == _monster.Coords()) {
         battle();

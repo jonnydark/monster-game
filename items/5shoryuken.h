@@ -32,7 +32,7 @@ namespace items
       // Destructor
       ~shoryuken() {}
 
-      void use(Player &p, monster &m) {
+      void use(Player &p, Monster &m) {
         std::cout << "\n\tYou clenched your fist and crouched. Then, in one swift movement, you\n"
                   << "\tdelivered a swift rising, flaming uppercut to the monster's jaw.\n\n"
                   << "\t\tSHORYUUKEN!!\n\n";

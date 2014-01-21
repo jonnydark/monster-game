@@ -13,19 +13,13 @@
 
 using namespace std;
 
-// timeBombTime int declared in main.cpp
-extern int timeBombTime;
-
 // Function works on a random number generator.
 // The numbers are between 0 and 6. 0123 are nsew
 // Numbers 456 are just waiting
 // This is subject to change
-void monster::move(const dungeon_map::map &mp) {
+void Monster::move(const dungeon_map::map &mp) {
   int n = rand() % 7;
   //if the time bomb has been used, always wait
-  if(timeBombTime > 0) {
-    n = 4;
-  }
   switch(n) {
     case 0:
       if(yPos > 1 && mp.index(xPos, yPos-1)->getType() != 1) {
@@ -53,7 +47,7 @@ void monster::move(const dungeon_map::map &mp) {
 }
 
 // Fight
-void monster::fight(Player &p) {
+void Monster::fight(Player &p) {
   // Similar score, there are four moves the monster can use at random.
   // It is weighted towards the weaker attack, naturally
   int move = rand() % 10;

@@ -36,7 +36,7 @@ namespace items
       ~vorpalSword() {}
 
       // This will also do something later
-      void use(Player &p, monster &m) {
+      void use(Player &p, Monster &m) {
         // Print different message if this is the final blow
         if(m.hp() <= 30) {
           std::cout << "\n\n\tOne, two! One, two! and through and through\n"

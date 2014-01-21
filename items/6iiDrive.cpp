@@ -49,7 +49,7 @@ void iiDrive::useMap(Player &p) {
 
 
 // In battle function
-void iiDrive::use(Player &p, monster &m) {
+void iiDrive::use(Player &p, Monster &m) {
   cout << "\n\tYou withdrew The Infinite Improbability Drive from your bag. It started\n"
        << "\tto glow quite ominously. Then, all of a sudden, ";
   int n = rand() % 10;

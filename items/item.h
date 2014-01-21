@@ -15,7 +15,7 @@
 
 // Forward declare player class
 class Player;
-class monster;
+class Monster;
 
 namespace items {
 
@@ -59,7 +59,7 @@ namespace items {
       // uses the item. Items always affect the monster or
       // the player and so they take those as arguments by
       // reference
-      virtual void use(Player&, monster &)=0;
+      virtual void use(Player&, Monster&)=0;
 
 
       // This function is called for using the item outside

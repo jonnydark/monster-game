@@ -36,7 +36,7 @@ class Game {
 
     dungeon_map::map _map;
     Player           _player;
-    monster          _monster;
+    Monster          _monster;
     BattleGround     _battleGround;
 };
 

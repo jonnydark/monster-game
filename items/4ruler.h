@@ -34,7 +34,7 @@ namespace items
       }
 
       // Battle usage is identical to out of battle use
-      void use(Player &p, monster &m) {
+      void use(Player &p, Monster &m) {
         useMap(p);
       }
   };

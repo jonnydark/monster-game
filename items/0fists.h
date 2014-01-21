@@ -34,7 +34,7 @@ namespace items
       ~fists() {}
 
       // Attack!
-      void use(Player &p, monster &m) {
+      void use(Player &p, Monster &m) {
         std::cout << "\n\tYou used your mighty fists! HI-YA!\n";
         m.hitOrHeal(-10);
       }

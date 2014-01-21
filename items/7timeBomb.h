@@ -41,7 +41,7 @@ namespace items
         uses=0;
       }
 
-      void use(Player &p, monster &m) {
+      void use(Player &p, Monster &m) {
         useMap(p);
         uses=0;
       }

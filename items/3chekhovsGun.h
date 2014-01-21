@@ -34,7 +34,7 @@ namespace items
       ~chekhovsGun() {}
 
       // Battle usage!
-      void use(Player &p, monster &m) {
+      void use(Player &p, Monster &m) {
         std::cout << "\n\tYou readied the rifle, took aim and pulled the trigger.\n";
         // If the monster is near death use the item and kill it
         if(m.hp() <= 60) {

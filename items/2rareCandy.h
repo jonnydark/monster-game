@@ -29,7 +29,7 @@ namespace items
       ~rareCandy(){}
 
       // use does the same thing as useMap
-      void use(Player &p, monster &m) {
+      void use(Player &p, Monster &m) {
         useMap(p);
       }
 
