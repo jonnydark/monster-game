@@ -13,7 +13,7 @@
 #ifndef CHARBASE_H
 #define CHARBASE_H
 
-#include "map/map.h"
+#include "map.h"
 
 #include <string>
 

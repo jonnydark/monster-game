@@ -10,16 +10,26 @@
 #ifndef ITEM_H
 #define ITEM_H
 
-// Monster class is included here as items rely on hitOrHeal
-#include "../monster.h"
-
 #include <string>
 #include <iostream>
 
 // Forward declare player class
 class player;
+class monster;
 
 namespace items {
+
+  enum ItemID {
+    Fists,
+    VorpalSword,
+    RareCandy,
+    CheckovsGun,
+    Ruler,
+    Shoryuken,
+    InfiniteImprobabilityDrive,
+    TimeBomb
+  };
+
 
   class item 
   {

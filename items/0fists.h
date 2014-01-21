@@ -7,6 +7,8 @@
 #ifndef FISTS_H
 #define FISTS_H
 
+#include "monster.h"
+
 namespace items
 {
 

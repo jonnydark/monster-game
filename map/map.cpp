@@ -8,7 +8,7 @@
 #include <cstdlib>
 
 #include "map.h"
-#include "../player.h" 
+#include "player.h" 
 
 
 char alphabet[] = "ABCDEFGHIJ";
@@ -31,7 +31,7 @@ namespace dungeon_map
       for(int i=0; i<side-3; i++) {
         // Get the address of a random space, if it isn't already a pitfall, convert it
         space * randomSpace = &spaces[rand() % (size + 1)];
-        if(randomSpace->getType() == NormalSpace) {
+        if(randomSpace->IsNormalSpace()) {
           randomSpace->setType(Pitfall);
           continue;
         }
@@ -42,8 +42,8 @@ namespace dungeon_map
       for(int i=0; i<side-2; i++) {
        // Get the address of a random space, if it isn't already a pitfall or item space convert it 
        space * randomSpace = &spaces[rand() % (size + 1)];
-       if(randomSpace->getType() == 0) {
-         randomSpace->setItemID(i+1); // i+1 as item 0 is fists and you get that by default
+       if(randomSpace->IsNormalSpace()) {
+         randomSpace->setItemID(IntToItemId(i)); // i+1 as item 0 is fists and you get that by default
          // randomSpace->mark(); // uncomment only in need of debugging
          continue;
        }
@@ -56,6 +56,11 @@ namespace dungeon_map
     }
   }
 
+  items::ItemID map::IntToItemId(const unsigned int i) {
+    items::ItemID array[] = { items::VorpalSword, items::RareCandy, items::CheckovsGun, items::Ruler, 
+      items::Shoryuken, items::InfiniteImprobabilityDrive, items::TimeBomb, items::InfiniteImprobabilityDrive };
+    return array[i];
+  }
 
   //This acesses the coordinates on the map in a more human readable fashion
   space * map::index(const int x, const int y) const {

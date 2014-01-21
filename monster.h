@@ -22,7 +22,7 @@ class map;
 
       // Standard constructor - random position along top row
       // Monster health is related to the size of the map
-      monster(dungeon_map::map &mp) : character(mp, 1, 100+2*mp.getSize()) {}
+      monster(dungeon_map::map &mp) : charBase::character(mp, 1, 100+2*mp.getSize()) {}
 
       // Destructor
       ~monster() {}

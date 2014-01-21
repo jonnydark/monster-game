@@ -5,9 +5,13 @@
  * and described in char.h
  */
 
+#include <vector>
+
 #include "player.h"
+#include "copy.h"
 
 // Items
+#include "items/0fists.h"
 #include "items/1vorpalSword.h"
 #include "items/2rareCandy.h"
 #include "items/3chekhovsGun.h"
@@ -16,12 +20,14 @@
 #include "items/6iiDrive.h"
 #include "items/7timeBomb.h"
 
-using namespace std;
-using namespace items;
+player::player(dungeon_map::map &mp) : character(mp, mp.getSide(), 100) { 
+  Print::OpeningMessage();
+  inventory.push_back(new items::fists);
+}
 
 // Destructor
 player::~player() {
-  vector<items::item*>::iterator it;
+  std::vector<items::item*>::iterator it;
   for(it=inventory.begin(); it!=inventory.end(); ++it) {
     delete *it;
   }
@@ -30,59 +36,62 @@ player::~player() {
 void player::MoveNorth() {
   if(yPos > 1) {
     yPos -= 1;
-    cout << "moved north";
+    std::cout << "moved north";
   } else {
-    cout << "\nA wise old wizard once said \"YOU SHALL NOT PASS!\" I think that advice applies here,\n there is a wall in front of you\n";
+    std::cout << "\nA wise old wizard once said \"YOU SHALL NOT PASS!\" I think that advice applies here,\n there is a wall in front of you\n";
   }
 }
 
 void player::MoveSouth() {
   if(yPos < _boundry) {
     yPos += 1;
-    cout << "moved south";
+    std::cout << "moved south";
   } else {
-    cout << "\nYou just walked straight into a wall. Make an appointment at your nearest opticians,\n you may be suffering from near-sightedness\n";
+    std::cout << "\nYou just walked straight into a wall. Make an appointment at your nearest opticians,\n you may be suffering from near-sightedness\n";
   }
 }
 
 void player::MoveWest() {
   if(xPos > 1) {
     xPos -= 1;
-    cout << "moved west";
+    std::cout << "moved west";
   } else {
-    cout << "\nEffects of going west can involve things appearing more delicious than they actually are,\n and disorientation. You just walked in to a wall, simmer down son.\n";
+    std::cout << "\nEffects of going west can involve things appearing more delicious than they actually are,\n and disorientation. You just walked in to a wall, simmer down son.\n";
   }
 }
 
 void player::MoveEast() {
   if(xPos < _boundry) {
     xPos += 1;
-    cout << "moved east";
+    std::cout << "moved east";
   } else {
-    cout << "\nYeah! Fight the man! Don't let him tell you where you can and can't go! You make your own rules!\n Hit the wall harder!\n";
+    std::cout << "\nYeah! Fight the man! Don't let him tell you where you can and can't go! You make your own rules!\n Hit the wall harder!\n";
   }
 }
 
 void player::Wait() {
-  cout << "\nYou just walked straight into a wall. Make an appointment at your nearest opticians,\n you may be suffering from near-sightedness\n";
+  std::cout << "\nYou just walked straight into a wall. Make an appointment at your nearest opticians,\n you may be suffering from near-sightedness\n";
 }
 
-
 // Inventory Accessor
-item * player::select(unsigned int i) const {
-  if(i-1 <= inventory.size()) {
-    return inventory[i-1];
+items::item * player::select(const unsigned int index) const {
+  if(index-1 <= inventory.size()) {
+    return inventory[index-1];
   }
-  cerr << "No such item, returning item 1\n"; // This is more for catching errors
+  std::cerr << "No such item, returning item 1\n"; // This is more for catching errors
   return inventory[0];
 }
 
+void player::UseItem(const unsigned int index) {
+  items::item* itemToUse = select(index);
+  itemToUse->useMap(*this);
+}
 
 // Function to print the entire inventory
 void player::printInventory() {
   std::cout << "\n\nInventory:\n\n";
   int i(1);
-  vector<item*>::iterator sel; // Declare an iterator sel
+  std::vector<items::item*>::iterator sel; // Declare an iterator sel
   for(sel = inventory.begin(); sel != inventory.end(); ++sel) {
     // if the iten has been used up, then delete it
     if((*sel)->getUses() == 0) {
@@ -92,11 +101,11 @@ void player::printInventory() {
       continue;
     }
     if(i%2 == 0) {
-      cout << "\t\t";
+      std::cout << "\t\t";
     }
-    cout << "\t" <<  i << ". " << (*sel)->getName();
+    std::cout << "\t" <<  i << ". " << (*sel)->getName();
     if(i%2 == 0) {
-      cout << endl;
+      std::cout << std::endl;
     }
     i++;
   }
@@ -104,34 +113,31 @@ void player::printInventory() {
 
 
 // Function to add an item to your inventory
-void player::getItem(unsigned int itemID) {
-  switch(itemID) {
-    case 1:
+void player::AddItemToInventory(const items::ItemID newItem) {
+  switch(newItem) {
+    case items::VorpalSword:
       inventory.push_back(new items::vorpalSword);
       break;
-    case 2:
+    case items::RareCandy:
       inventory.push_back(new items::rareCandy);
       break;
-    case 3:
+    case items::CheckovsGun:
       inventory.push_back(new items::chekhovsGun);
       break;
-    case 4:
+    case items::Ruler:
       inventory.push_back(new items::ruler);
       break;
-    case 5:
+    case items::Shoryuken:
       inventory.push_back(new items::shoryuken);
       break;
-    case 6:
+    case items::InfiniteImprobabilityDrive:
       inventory.push_back(new items::iiDrive);
       break;
-    case 7:
+    case items::TimeBomb:
       inventory.push_back(new items::timeBomb);
       break;
-    case 8:
-      inventory.push_back(new items::iiDrive);
-      break;
     default:
-      cout << "\n\nThe item dissappeared in your hand...HOW MYSTERIOUS...\n"; // error msg
+      std::cout << "\n\nThe item dissappeared in your hand...HOW MYSTERIOUS...\n"; // error msg
       break;
   }
 }

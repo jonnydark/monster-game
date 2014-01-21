@@ -6,6 +6,17 @@ class Print
 {
   public:
 
+    static void OpeningMessage() {
+      std::cout << "\n\n   You find yourself in the dark dungeon. It's impossible to see more than\n"
+        << "a few metres in here! Luckily you brought with you an iPhone which has \n"
+        << "an app for just such an occasion. You have a look at the map.\"O\" marks\n"
+        << "your current location. You can bring this up at any time by typing \"map\"\n"
+        << "Apparently, there is a monster in this dungeon and it's up to you to go kill it.\n"
+        << "Why, you ask? Who knows, the producers spent all the money on your iPhone and\n"
+        << "didn't have enough left over for a decent plot, so you'll just have to make do.\n\n"
+        << "Type 'help' at any time to bring up the controls\n";
+    }
+
     static void Help() {
       std::cout << "\n\n    Help\n"
            << "============\n"

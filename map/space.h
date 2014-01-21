@@ -31,6 +31,8 @@
 // Forward declare the iostream
 #include <iosfwd>
 
+#include "item.h"
+
 
 namespace dungeon_map 
 {
@@ -40,7 +42,7 @@ namespace dungeon_map
   {
     protected:
       SpaceType type;
-      int itemID; 
+      items::ItemID itemID; 
       char out; // contains the char that is returned for map output, ' ', O, or !
       bool marked; 
 
@@ -70,13 +72,13 @@ namespace dungeon_map
        * in the player's inventory
        */
       // Sets space to type 2 (item space) and sets the itemID
-      void setItemID(unsigned int ID) {
+      void setItemID(items::ItemID id) {
         type = ItemSpace;
-        itemID = ID;
+        itemID = id;
       }
 
       // itemID accessor
-      int getItemID() const {
+      items::ItemID getItemID() const {
         return itemID;
       }
 

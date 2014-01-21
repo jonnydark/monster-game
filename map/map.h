@@ -9,6 +9,7 @@
 #define MAP_H
 
 #include "space.h"
+#include "item.h"
 
 
 //forward declaration
@@ -32,6 +33,8 @@ namespace dungeon_map
       // Data //
       space *spaces; // an array of spaces
       int side, size;
+      
+      items::ItemID IntToItemId(const unsigned int i);
       
     public:
       // The constructor initializes the global variables side and size
