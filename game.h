@@ -35,7 +35,7 @@ class Game {
     bool             _isPlaying;
 
     dungeon_map::map _map;
-    player           _player;
+    Player           _player;
     monster          _monster;
     BattleGround     _battleGround;
 };

@@ -6,8 +6,8 @@
 
 #include "item.h"
 #include "6iiDrive.h"
-#include "../player.h"
-#include "../monster.h"
+#include "player.h"
+#include "monster.h"
 
 #include <cstdlib>
 
@@ -15,7 +15,7 @@
 using namespace std;
 using namespace items; 
 
-void iiDrive::useMap(player &p) {
+void iiDrive::useMap(Player &p) {
   cout << "\n\tYou withdrew The Infinite Improbability Drive from your bag. It started\n"
        << "\tto glow quite ominously. Then, all of a sudden, ";
   int n = rand() % 3;
@@ -49,7 +49,7 @@ void iiDrive::useMap(player &p) {
 
 
 // In battle function
-void iiDrive::use(player &p, monster &m) {
+void iiDrive::use(Player &p, monster &m) {
   cout << "\n\tYou withdrew The Infinite Improbability Drive from your bag. It started\n"
        << "\tto glow quite ominously. Then, all of a sudden, ";
   int n = rand() % 10;

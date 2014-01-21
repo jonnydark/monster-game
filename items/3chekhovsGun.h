@@ -34,7 +34,7 @@ namespace items
       ~chekhovsGun() {}
 
       // Battle usage!
-      void use(player &p, monster &m) {
+      void use(Player &p, monster &m) {
         std::cout << "\n\tYou readied the rifle, took aim and pulled the trigger.\n";
         // If the monster is near death use the item and kill it
         if(m.hp() <= 60) {
@@ -51,7 +51,7 @@ namespace items
       }
 
       // Map usage
-      void useMap(player &p) {
+      void useMap(Player &p) {
         std::cout << "\n\tYou readied the rifle and took aim. However, the time just didn't\n"
                   << "\tseem right to pull the trigger. What were you aiming at anyway?\n\n";
       }

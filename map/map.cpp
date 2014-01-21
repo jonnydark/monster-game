@@ -105,7 +105,7 @@ namespace dungeon_map
 
 
   // Updates the map to set the player location
-  void map::update(const player &p1) {
+  void map::update(const Player &p1) {
     // Cycles through all the data points 
     // - if the point is marked, then set it as ! if not set it as x
     for(int i=0; i<size; i++) {

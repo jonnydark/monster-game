@@ -34,13 +34,13 @@ namespace items
       ~fists() {}
 
       // Attack!
-      void use(player &p, monster &m) {
+      void use(Player &p, monster &m) {
         std::cout << "\n\tYou used your mighty fists! HI-YA!\n";
         m.hitOrHeal(-10);
       }
 
       // Use on the map - i.e do practically nothing
-      void useMap(player &p) {
+      void useMap(Player &p) {
         std::cout << "\n\tYou punched the air with your mighty fists and struck a pose like \n"
                   << "\tyou were Bruce Lee. I'm not going to lie, it looked totally lame. \n"
                   << "\tDon't worry, nobody saw it. Well, nobody except for me. I saw it and\n"

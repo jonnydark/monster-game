@@ -13,7 +13,7 @@
 
 
 //forward declaration
-class player;
+class Player;
 
 namespace dungeon_map
 {
@@ -58,7 +58,7 @@ namespace dungeon_map
       space * operator()(const char x, const int i) const;
 
       // Updates the map to set the player location
-      void update(const player &p1); 
+      void update(const Player &p1); 
 
       bool HasNormalSpaceAt(const Coords coords) const; 
       bool HasPitfallAt(const Coords coords) const; 

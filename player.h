@@ -1,7 +1,7 @@
 /*
- * player. h 
+ * Player. h 
  *
- * Class to describe the player character. Class inherits from character class from 
+ * Class to describe the Player character. Class inherits from character class from 
  * charBase.h
  * Inherited values:
  *   int health, xPos, yPos - all self explanatory
@@ -17,17 +17,17 @@
 
 #include <vector>
 
-class player : public charBase::character
+class Player : public charBase::character
 {
   private:
     // The inventory is a vector of base class pointers
     std::vector<items::item*> inventory;                  
 
   public:
-    player(dungeon_map::map &mp);
+    Player(dungeon_map::map &mp);
 
     // Destructor - will need to delete the vector of items
-    ~player();
+    ~Player();
 
     void MoveNorth();
     void MoveSouth();

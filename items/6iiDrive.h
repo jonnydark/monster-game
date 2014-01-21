@@ -34,11 +34,11 @@ namespace items
       // Player is healed by 50 points
       // It does nothing
       // It destroys itself
-      void useMap(player &p);
+      void useMap(Player &p);
 
       // Same as on the map, except the self destruct is different
       // and there is also a chance that it kills the monster
-      void use(player &p, monster &m);
+      void use(Player &p, monster &m);
 
   };
 

@@ -36,7 +36,7 @@ namespace items
       ~vorpalSword() {}
 
       // This will also do something later
-      void use(player &p, monster &m) {
+      void use(Player &p, monster &m) {
         // Print different message if this is the final blow
         if(m.hp() <= 30) {
           std::cout << "\n\n\tOne, two! One, two! and through and through\n"
@@ -49,7 +49,7 @@ namespace items
         m.hitOrHeal(-30);
       }
 
-      void useMap(player &p) {
+      void useMap(Player &p) {
         if(used < 3) {
           std::cout << "\n\tYou swung the Vorpal Sword around.\n"
                     << "\tHey, you remember that guy from the first Indiana Jones film with the\n"

@@ -1,7 +1,7 @@
 /*
- * player.cpp
+ * Player.cpp
  *
- * This file contains all the definitions for the player as laid out in the protyped
+ * This file contains all the definitions for the Player as laid out in the protyped
  * and described in char.h
  */
 
@@ -20,20 +20,20 @@
 #include "6iiDrive.h"
 #include "7timeBomb.h"
 
-player::player(dungeon_map::map &mp) : character(mp, mp.getSide(), 100) { 
+Player::Player(dungeon_map::map &mp) : character(mp, mp.getSide(), 100) { 
   Print::OpeningMessage();
   inventory.push_back(new items::fists);
 }
 
 // Destructor
-player::~player() {
+Player::~Player() {
   std::vector<items::item*>::iterator it;
   for(it=inventory.begin(); it!=inventory.end(); ++it) {
     delete *it;
   }
 }
 
-void player::MoveNorth() {
+void Player::MoveNorth() {
   if(yPos > 1) {
     yPos -= 1;
     std::cout << "moved north";
@@ -42,7 +42,7 @@ void player::MoveNorth() {
   }
 }
 
-void player::MoveSouth() {
+void Player::MoveSouth() {
   if(yPos < _boundry) {
     yPos += 1;
     std::cout << "moved south";
@@ -51,7 +51,7 @@ void player::MoveSouth() {
   }
 }
 
-void player::MoveWest() {
+void Player::MoveWest() {
   if(xPos > 1) {
     xPos -= 1;
     std::cout << "moved west";
@@ -60,7 +60,7 @@ void player::MoveWest() {
   }
 }
 
-void player::MoveEast() {
+void Player::MoveEast() {
   if(xPos < _boundry) {
     xPos += 1;
     std::cout << "moved east";
@@ -69,12 +69,12 @@ void player::MoveEast() {
   }
 }
 
-void player::Wait() {
+void Player::Wait() {
   std::cout << "\nYou just walked straight into a wall. Make an appointment at your nearest opticians,\n you may be suffering from near-sightedness\n";
 }
 
 // Inventory Accessor
-items::item * player::select(const unsigned int index) const {
+items::item * Player::select(const unsigned int index) const {
   if(index-1 <= inventory.size()) {
     return inventory[index-1];
   }
@@ -82,13 +82,13 @@ items::item * player::select(const unsigned int index) const {
   return inventory[0];
 }
 
-void player::UseItem(const unsigned int index) {
+void Player::UseItem(const unsigned int index) {
   items::item* itemToUse = select(index);
   itemToUse->useMap(*this);
 }
 
 // Function to print the entire inventory
-void player::printInventory() {
+void Player::printInventory() {
   std::cout << "\n\nInventory:\n\n";
   int i(1);
   std::vector<items::item*>::iterator sel; // Declare an iterator sel
@@ -113,7 +113,7 @@ void player::printInventory() {
 
 
 // Function to add an item to your inventory
-void player::AddItemToInventory(const items::ItemID newItem) {
+void Player::AddItemToInventory(const items::ItemID newItem) {
   switch(newItem) {
     case items::VorpalSword:
       inventory.push_back(new items::vorpalSword);
@@ -142,18 +142,18 @@ void player::AddItemToInventory(const items::ItemID newItem) {
   }
 }
 
-dungeon_map::Coords player::NorthCoords() const {
+dungeon_map::Coords Player::NorthCoords() const {
   return { xPos, yPos-1 };
 }
 
-dungeon_map::Coords player::SouthCoords() const {
+dungeon_map::Coords Player::SouthCoords() const {
   return { xPos, yPos+1 };
 }
 
-dungeon_map::Coords player::WestCoords() const {
+dungeon_map::Coords Player::WestCoords() const {
   return { xPos-1, yPos };
 }
 
-dungeon_map::Coords player::EastCoords() const {
+dungeon_map::Coords Player::EastCoords() const {
   return { xPos+1, yPos };
 }

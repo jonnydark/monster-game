@@ -34,14 +34,14 @@ namespace items
       // Destructor
       ~timeBomb() {}
 
-      void useMap(player &p) {
+      void useMap(Player &p) {
         std::cout << "\n\tYou activated the time bomb. A shock-wave emanated from the bomb causing all\n"
                   << "\tof time to freeze, except for you. This is pretty wizard...\n\n";
         ::timeBombTime = 3;
         uses=0;
       }
 
-      void use(player &p, monster &m) {
+      void use(Player &p, monster &m) {
         useMap(p);
         uses=0;
       }

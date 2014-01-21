@@ -34,7 +34,7 @@ class map;
 
       // The monster fights. This should never be called
       // outside of a battle.
-      void fight(player &p);
+      void fight(Player &p);
   };
 
 

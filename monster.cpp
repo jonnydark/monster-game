@@ -53,7 +53,7 @@ void monster::move(const dungeon_map::map &mp) {
 }
 
 // Fight
-void monster::fight(player &p) {
+void monster::fight(Player &p) {
   // Similar score, there are four moves the monster can use at random.
   // It is weighted towards the weaker attack, naturally
   int move = rand() % 10;

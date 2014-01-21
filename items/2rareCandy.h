@@ -29,12 +29,12 @@ namespace items
       ~rareCandy(){}
 
       // use does the same thing as useMap
-      void use(player &p, monster &m) {
+      void use(Player &p, monster &m) {
         useMap(p);
       }
 
-      // Heal the player to maximum
-      void useMap(player &p) {
+      // Heal the Player to maximum
+      void useMap(Player &p) {
         std::cout << "\n\tRecovered " << 100-p.hp() << " health\n"
              << "\tHowever, you can't shake the feeling this isn't what rare\n"
              << "\tcandies are supposed to do. Is the game developer trying to\n"

@@ -32,7 +32,7 @@ namespace items
       // Destructor
       ~shoryuken() {}
 
-      void use(player &p, monster &m) {
+      void use(Player &p, monster &m) {
         std::cout << "\n\tYou clenched your fist and crouched. Then, in one swift movement, you\n"
                   << "\tdelivered a swift rising, flaming uppercut to the monster's jaw.\n\n"
                   << "\t\tSHORYUUKEN!!\n\n";
@@ -41,7 +41,7 @@ namespace items
         std::cout << "\t(" << uses << " use left)\n";
       }
 
-      void useMap(player &p) {
+      void useMap(Player &p) {
         std::cout << "\n\tYou performed an excellent shoryuken. You feel a warm sense of\n"
                   << "\tsatisfaction from doing it well. However, you stop to wonder why you\n"
                   << "\tjust did that. The monster is nowhere to be seen...\n\n";

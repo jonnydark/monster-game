@@ -14,7 +14,7 @@
 #include <iostream>
 
 // Forward declare player class
-class player;
+class Player;
 class monster;
 
 namespace items {
@@ -41,9 +41,9 @@ namespace items {
        * The string 'info' contains a description of the item and its function
        *    Its accessor is 'getInfo()';
        * The integer 'uses' is the number of uses left. This number can be set
-       * to decrease with the function use(player &, monster &). If an item's
+       * to decrease with the function use(Player &, monster &). If an item's
        * value for uses = 0, it will be deleted from the vector next time
-       * player::printInventory() is called. For infinite use items, the standard
+       * Player::printInventory() is called. For infinite use items, the standard
        * value is -1.
        *    Its accessor is getUses();  
        */
@@ -59,13 +59,13 @@ namespace items {
       // uses the item. Items always affect the monster or
       // the player and so they take those as arguments by
       // reference
-      virtual void use(player &, monster &)=0;
+      virtual void use(Player&, monster &)=0;
 
 
       // This function is called for using the item outside
       // battle. Only works for some items - battle only items
       // print a humourous message about how it did nothing.
-      virtual void useMap(player &)=0;
+      virtual void useMap(Player&)=0;
      
 
       std::string getName() {

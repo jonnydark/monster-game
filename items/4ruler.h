@@ -29,12 +29,12 @@ namespace items
       // Destructor
       ~ruler() {}
 
-      void useMap(player &p) {
+      void useMap(Player &p) {
         std::cout << "\n\tYou sized up the situation!!\n\n";
       }
 
       // Battle usage is identical to out of battle use
-      void use(player &p, monster &m) {
+      void use(Player &p, monster &m) {
         useMap(p);
       }
   };
