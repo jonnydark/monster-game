@@ -2,16 +2,23 @@
 
 #define BATTLE_H
 
-#include "player.h"
-#include "monster.h"
+class player;
+class monster;
+namespace dungeon_map {
+  class map;
+}
 
-class Battle {
+
+class BattleGround {
   public:
-    Battle (player& thePlayer, monster& theMonster);
-    ~Battle () {}
+    BattleGround (const dungeon_map::map& gameMap);
+    ~BattleGround () {}
+
+    void Start(player& thePlayer, monster& theMonster);
+
 
   private:
-    /* data */
+    const dungeon_map::map* _dungeonMap;
 };
 
 

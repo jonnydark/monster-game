@@ -4,8 +4,12 @@
 #include <string>
 #include <sstream>
 
-#include "copy.h"
 #include "game.h"
+#include "player.h"
+#include "monster.h"
+#include "map.h"
+#include "battle.h"
+#include "copy.h"
 #include "item.h"
 
 Game::Game(unsigned int mapSize): 
@@ -14,7 +18,8 @@ Game::Game(unsigned int mapSize):
   _isPlaying(true),
   _map(mapSize),
   _player(_map),
-  _monster(_map)
+  _monster(_map),
+  _battleGround(_map)
 {
    srand((unsigned)time(NULL));
 }

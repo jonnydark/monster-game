@@ -5,8 +5,6 @@
  * It also contains the global variable timeBombTime 
  */
 
-#include "player.h"
-#include "monster.h"
 #include "input.h"
 #include "game.h"
 

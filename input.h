@@ -12,7 +12,9 @@
 // Forward declarations
 class player;
 class monster;
-class map;
+namespace dungeon_map {
+  class map;
+}
 
 /* 
  * This is the interpreter function

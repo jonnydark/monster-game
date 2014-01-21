@@ -3,7 +3,7 @@
 
 
 #this will expand
-OBJS = main.o input.o game.o charBase.o player.o monster.o space.o map.o 6iiDrive.o
+OBJS = main.o input.o game.o battle.o charBase.o player.o monster.o space.o map.o 6iiDrive.o
 CC = g++
 DEBUG = -g -pedantic-errors 
 CFLAGS = -std=c++0x -Wall -c 
@@ -26,6 +26,9 @@ map.o : map/map.cpp map/map.h player.h
 
 game.o : game.cpp game.h player.h monster.h
 	$(CC) game.cpp $(CFLAGS) $(INC)
+
+battle.o : battle.cpp battle.h monster.h map/map.h player.h
+	$(CC) battle.cpp $(CFLAGS) $(INC)
 
 charBase.o : charBase.cpp charBase.h
 	$(CC) charBase.cpp $(CFLAGS) $(INC)

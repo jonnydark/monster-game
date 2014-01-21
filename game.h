@@ -3,10 +3,11 @@
 #define GAME_H
 
 #include <string>
-
 #include "player.h"
 #include "monster.h"
-#include "map/map.h"
+#include "battle.h"
+#include "map.h"
+
 
 class Game {
   public:
@@ -36,6 +37,7 @@ class Game {
     dungeon_map::map _map;
     player           _player;
     monster          _monster;
+    BattleGround     _battleGround;
 };
 
 
