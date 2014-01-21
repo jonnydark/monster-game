@@ -3,6 +3,8 @@
 #define BATTLE_H
 
 class Game;
+class Player;
+class Monster;
 
 
 class BattleGround {
@@ -11,6 +13,14 @@ class BattleGround {
 
 
   private:
+    void DisplayHealthBarsAndOptions(Player&, Monster&);
+    void PlayerTurn(Game& currentGame);
+    void MonsterTurn(Game& currentGame);
+    bool Fight(Game& currentGame);
+    void CheckBackpack(Game& currentGame);
+    void RunAway(Game& currentGame);
+
+    bool _escape;
 };
 
 

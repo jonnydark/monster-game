@@ -57,6 +57,10 @@ class Print
       std::cout << "Excuse me?\n";
     }
 
+    static void StartBattle() {
+      std::cout << "\n\nOH MY GIDDY AUNT! IT'S THE MONSTER! It's very scary!\n\n\tPrepare to fight!";
+    }
+
   
 
 };
