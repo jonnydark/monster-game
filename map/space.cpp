@@ -25,9 +25,12 @@ namespace dungeon_map
     set(' ');
   }
 
-   // function to set the type of space
-  void space::setType(SpaceType newType) {
-      type = newType;
+  void space::ConvertToNormal() {
+    type = NormalSpace;
+  }
+
+  void space::ConvertToPitfall() {
+    type = Pitfall;
   }
 
    

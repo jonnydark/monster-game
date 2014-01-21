@@ -56,9 +56,8 @@ namespace dungeon_map
       bool IsItemSpace() { return (type == ItemSpace); }
       bool IsPitfall() { return (type == Pitfall); }
 
-      // Used to set the type of the spaces. Only accepts 0 or 1
-      // Use setItemID() to convert space to item space
-      void setType(SpaceType newType);
+      void ConvertToNormal();
+      void ConvertToPitfall();
      
       /*
        * All the items have a unique ID. The item ID can be passed

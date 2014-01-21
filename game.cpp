@@ -142,7 +142,7 @@ void Game::action() {
     if(valid) {
       break;
     }
-    std::cout << "Excuse me?\n";
+    Print::InputError(); 
   }
 }
 
@@ -420,7 +420,7 @@ void Game::GivePlayerNewItem() {
   // Pass on the item ID to the player class
   _player.AddItemToInventory(newItem); 
   std::cout << "\n\tYou got a " << _player.select(_player.invSize())->getName() << "! Awesome!\n\tCheck it out in your inventory with 'i'\n\n";
-  (_map.index(_player.x(), _player.y()))->setType(dungeon_map::NormalSpace); // change back to normal space
+  (_map.index(_player.Coords()))->ConvertToNormal();
   // Run CheckCurrentSpace again to check for pitfalls and such
   CheckCurrentSpace();
 }

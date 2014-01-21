@@ -48,7 +48,9 @@ namespace dungeon_map
       }
 
       //This acesses the coordinates on the map using numerical cartesian coords
-      space * index(const int x, const int y) const;
+      space* index(const int x, const int y) const;
+      space* index(const Coords coords) const;
+
     
       bool MaybeGetIndex(space &aSpace, const int x, const int y) const;
 
@@ -63,10 +65,7 @@ namespace dungeon_map
       bool HasItemSpaceAt(const Coords coords) const; 
       bool HasSafeSpaceAt(const Coords coords) const;
 
-      // Accessor for size
       int getSize() const { return size; }
-
-      // Accessor for side
       int getSide() const { return side; }
 
       //Overload the insertion operator to print like a matrix

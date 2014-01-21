@@ -32,7 +32,7 @@ namespace dungeon_map
         // Get the address of a random space, if it isn't already a pitfall, convert it
         space * randomSpace = &spaces[rand() % (size + 1)];
         if(randomSpace->IsNormalSpace()) {
-          randomSpace->setType(Pitfall);
+          randomSpace->ConvertToPitfall();
           continue;
         }
         --i;
@@ -63,11 +63,16 @@ namespace dungeon_map
   }
 
   //This acesses the coordinates on the map in a more human readable fashion
-  space * map::index(const int x, const int y) const {
+  space* map::index(const int x, const int y) const {
     //size will be changed to rows if I choose to make rectangular maps possible
     int loc = (y-1) + (x-1)*side;  
     return &spaces[loc];
   }
+
+  space* map::index(const Coords coords) const {
+    return index(coords.x, coords.y);
+  }
+
 
   bool map::MaybeGetIndex(space &aSpace, const int x, const int y) const {
     if(x > 0 && y > 0 && x <= side && y<= side) {

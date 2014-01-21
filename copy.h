@@ -53,6 +53,10 @@ class Print
            << "\tThe bad news is, you still died when you hit the bottom\n";
     }
 
+    static void InputError() {
+      std::cout << "Excuse me?\n";
+    }
+
   
 
 };
