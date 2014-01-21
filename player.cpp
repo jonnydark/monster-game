@@ -11,14 +11,14 @@
 #include "copy.h"
 
 // Items
-#include "items/0fists.h"
-#include "items/1vorpalSword.h"
-#include "items/2rareCandy.h"
-#include "items/3chekhovsGun.h"
-#include "items/4ruler.h"
-#include "items/5shoryuken.h"
-#include "items/6iiDrive.h"
-#include "items/7timeBomb.h"
+#include "0fists.h"
+#include "1vorpalSword.h"
+#include "2rareCandy.h"
+#include "3chekhovsGun.h"
+#include "4ruler.h"
+#include "5shoryuken.h"
+#include "6iiDrive.h"
+#include "7timeBomb.h"
 
 player::player(dungeon_map::map &mp) : character(mp, mp.getSide(), 100) { 
   Print::OpeningMessage();
