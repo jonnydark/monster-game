@@ -45,17 +45,6 @@ class Player : public charBase::character
 
     // Returns the size of the inventory
     int invSize() const { return inventory.size(); }
-
-    // This function adds an item to the player's inventory. It is called when the player
-    // stands on an item space. All items have an ID associated with them. The ID provided
-    // as an argument determines what item gets added
-    // 1 - vorpalSword
-    // 2 - rareCandy
-    // 3 - chekhovsGun 
-    // 4 - ruler
-    // 5 - shoryuken
-    // 6 - iiDrive
-    // 7 - timeBomb
     void AddItemToInventory(const items::ItemID newItem);
 
     dungeon_map::Coords NorthCoords() const;

@@ -2,7 +2,7 @@
 
 #define BATTLE_H
 
-class player;
+class Player;
 class monster;
 namespace dungeon_map {
   class map;
@@ -14,7 +14,7 @@ class BattleGround {
     BattleGround (const dungeon_map::map& gameMap);
     ~BattleGround () {}
 
-    void Start(player& thePlayer, monster& theMonster);
+    void Start(Player& player, monster& theMonster);
 
 
   private:
