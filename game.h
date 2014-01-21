@@ -38,6 +38,8 @@ class Game {
     Player           _player;
     Monster          _monster;
     BattleGround     _battleGround;
+
+    friend class BattleGround;
 };
 
 
