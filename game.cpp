@@ -35,14 +35,14 @@ void Game::GameLoop() {
       // The player's turn
       action();
       // Are the player and the monster on the same space?
-      if(_player.getCoords() == _monster.getCoords()) {
+      if(_player.Coords() == _monster.Coords()) {
         battle();
         continue;
       }
       // The monster's turn
       _monster.move(_map);
       // Are the player and the monster on the same space?
-      if(_player.getCoords() == _monster.getCoords()) {
+      if(_player.Coords() == _monster.Coords()) {
         battle();
       }
 
@@ -150,13 +150,13 @@ void Game::action() {
 void Game::CheckCurrentSpace() {
   // Don't want to print messages if the player died in battle already
   if(!_player.dead()) {
-    if(_map.HasNormalSpaceAt(_player.getCoords())) {
+    if(_map.HasNormalSpaceAt(_player.Coords())) {
       CheckSurroundingSpaces();
     }
-    if(_map.HasPitfallAt(_player.getCoords())) {
+    if(_map.HasPitfallAt(_player.Coords())) {
       KillPlayerByPitfall();
     }
-    if(_map.HasItemSpaceAt(_player.getCoords())) {
+    if(_map.HasItemSpaceAt(_player.Coords())) {
       GivePlayerNewItem();
     }
   }
@@ -395,16 +395,16 @@ void Game::CheckSurroundingSpaces() {
       || _map.HasPitfallAt(_player.WestCoords())) {
       std::cout << "\n\t~You sense a disturbance in the force...~\n";
   }
-  if(_player.WestCoords() == _monster.getCoords()) {
+  if(_player.WestCoords() == _monster.Coords()) {
     std::cout << "\n\t~You can sense an evil presence to the west~\n";
   }
-  if(_player.EastCoords() == _monster.getCoords()) {
+  if(_player.EastCoords() == _monster.Coords()) {
     std::cout << "\n\t~You can sense an evil presence to the east~\n";
   }
-  if(_player.NorthCoords() == _monster.getCoords()) {
+  if(_player.NorthCoords() == _monster.Coords()) {
     std::cout << "\n\t~You can sense an evil presence to the north~\n";
   }
-  if(_player.SouthCoords() == _monster.getCoords()) {
+  if(_player.SouthCoords() == _monster.Coords()) {
     std::cout << "\n\t~You can sense an evil presence to the south~\n";
   }
 }

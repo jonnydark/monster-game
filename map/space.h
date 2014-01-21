@@ -17,12 +17,6 @@
  *
  * Pitfalls - If the player lands on a pitfall space - it's game over. There will be a
  * system that warns players of pitfalls in their vicinity
- *
- *
- * space type key
- *  0 - normal
- *  1 - pitfall
- *  2 - item
  */
 
 #ifndef SPACE_H

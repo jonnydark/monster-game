@@ -34,22 +34,14 @@ namespace charBase {
       virtual ~character() {}
 
       // Location accessors
-      int x() const {
-        return xPos;
-      }
+      int x() const { return xPos; }
 
-      int y() const {
-        return yPos;
-      }
+      int y() const { return yPos; }
 
-      dungeon_map::Coords getCoords() const {
-        return { xPos, yPos };
-      }
+      dungeon_map::Coords Coords() const { return { xPos, yPos }; }
 
       // Health accessor
-      int hp() const {
-        return health;
-      }
+      int hp() const { return health; }
 
       // Function to return a healthbar
       // Written like this so I can change the
