@@ -14,7 +14,6 @@
 
 Game::Game(unsigned int mapSize): 
   _mapSize(mapSize),
-  _timeBombTime(0),
   _isPlaying(true),
   _map(mapSize),
   _player(_map),
@@ -22,6 +21,8 @@ Game::Game(unsigned int mapSize):
 {
    srand((unsigned)time(NULL));
 }
+
+unsigned int Game::_timeBombTime = 0;
 
 void Game::Start() {
   _map.update(_player);

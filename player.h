@@ -13,9 +13,11 @@
 #define PLAYER_H
 
 #include "charBase.h"
-#include "items/item.h"
+#include "item.h"
 
 #include <vector>
+
+class Monster;
 
 class Player : public charBase::character
 {
@@ -39,6 +41,7 @@ class Player : public charBase::character
     items::item * select(const unsigned int itemIndex) const;
 
     void UseItem(const unsigned int itemIndex);
+    void UseOnMonster(const unsigned int itemIndex, Monster& monster);
 
     // Prints all the currently in the player's inventory with numbers associated to them
     void printInventory();

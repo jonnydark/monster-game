@@ -8,7 +8,7 @@
 #ifndef TIMEBOMB_H
 #define TIMEBOMB_H
 
-extern int timeBombTime;
+#include "game.h"
 
 namespace items
 {
@@ -37,7 +37,7 @@ namespace items
       void useMap(Player &p) {
         std::cout << "\n\tYou activated the time bomb. A shock-wave emanated from the bomb causing all\n"
                   << "\tof time to freeze, except for you. This is pretty wizard...\n\n";
-        ::timeBombTime = 3;
+        Game::_timeBombTime = 3;
         uses=0;
       }
 

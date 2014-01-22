@@ -16,6 +16,7 @@ class Game {
 
     void Start();
     void HandleGameOver();
+    static unsigned int _timeBombTime;
 
   private:
     void GameLoop();
@@ -31,7 +32,6 @@ class Game {
     void battle();
 
     unsigned int     _mapSize;
-    unsigned int     _timeBombTime;
     bool             _isPlaying;
 
     dungeon_map::map _map;

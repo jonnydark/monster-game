@@ -6,7 +6,7 @@ void BattleGround::Start(Game& currentGame) {
   // Opening message
   Print::StartBattle();
   
-  bool _escape(false);
+  _escape = false;
   while(!currentGame._player.dead() && !currentGame._monster.dead() && !_escape) { 
     PlayerTurn(currentGame);
  
@@ -131,30 +131,37 @@ void BattleGround::RunAway(Game& currentGame) {
 }
 
 void BattleGround::MonsterTurn(Game& currentGame) {
-    if(currentGame._timeBombTime == 0) {    
-    // Now it's the monster's time to shine. 10% chance of running away
-      std::cout << "\nThe monster's turn:";
-      if(rand() % 10 != 0) {
-        //The monster fights
-        currentGame._monster.fight(currentGame._player);
-        } else {
-        //Make the monster move until the player and the monster aren't
-        //on the same square
-        while(currentGame._player.x() == currentGame._monster.x() && currentGame._player.y() == currentGame._monster.y()) {
-          currentGame._monster.move(currentGame._map);
-        }
-        std::cout << "The monster ran!\n";
-        _escape = true;
-      }
-
-    } else { 
-      // if the timeBomb has been activated
-      std::cout << "\n\tThe monster is frozen in time!\n";
-      currentGame._timeBombTime--;
-
-      // Tell the player if the monster is now unfrozen
-      if(currentGame._timeBombTime == 0) {
-        std::cout << "\n\tThe monster was released from the time-lock!\n";
-      }
+    if(currentGame._timeBombTime != 0) {    
+      HandleTimeBomb(currentGame);
+      return;
     }
+    // Now it's the monster's time to shine. 10% chance of running away
+    std::cout << "\nThe monster's turn:";
+    if(rand() % 10 != 0) {
+      //The monster fights
+      currentGame._monster.fight(currentGame._player);
+    } else {
+      MonsterRuns(currentGame);
+    }
+}
+
+void BattleGround::HandleTimeBomb(Game& currentGame) {
+  // if the timeBomb has been activated
+  std::cout << "\n\tThe monster is frozen in time!\n";
+  currentGame._timeBombTime--;
+
+  // Tell the player if the monster is now unfrozen
+  if(currentGame._timeBombTime == 0) {
+    std::cout << "\n\tThe monster was released from the time-lock!\n";
+  }
+}
+
+void BattleGround::MonsterRuns(Game& currentGame) {
+  //Make the monster move until the player and the monster aren't
+  //on the same square
+  while(currentGame._player.Coords() == currentGame._monster.Coords()) {
+    currentGame._monster.move(currentGame._map);
+  }
+  std::cout << "The monster ran!\n";
+  _escape = true;
 }

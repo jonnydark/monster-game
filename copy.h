@@ -5,6 +5,16 @@
 class Print 
 {
   public:
+    static void AsciiArtTitle() {
+      std::cout << "\n\n\n";
+      std::cout << "\t###    #    #   ##   ###  ####      ##       ###   ##   #    # ####\n"
+                << "\t #     ##  ##  #  #  #  # #==      #  #     #     #  #  ##  ## #==\n"
+                << "\t #     # ## # ###### #  # #       ######    # *# ###### # ## # #\n"
+                << "\t###    #    # #    # ###  ####    #    #     ### #    # #    # ####\n"
+                << "\t===================================================================\n"
+                << "\t                      WITH  A MONSTER IN IT!!\n"
+                << "\t===================================================================\n\n\n\t";
+    }
 
     static void OpeningMessage() {
       std::cout << "\n\n   You find yourself in the dark dungeon. It's impossible to see more than\n"

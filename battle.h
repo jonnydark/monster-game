@@ -19,6 +19,8 @@ class BattleGround {
     bool Fight(Game& currentGame);
     void CheckBackpack(Game& currentGame);
     void RunAway(Game& currentGame);
+    void HandleTimeBomb(Game& currentGame);
+    void MonsterRuns(Game& currentGame);
 
     bool _escape;
 };
