@@ -16,6 +16,8 @@ class Game {
 
     void Start();
     void HandleGameOver();
+    bool StillWantsToPlay() { return _isPlaying; }
+
     static unsigned int _timeBombTime;
 
   private:

@@ -18,8 +18,12 @@ int main()
    srand((unsigned)time(NULL));
   // Welcome message!
     Print::AsciiArtTitle();  
+    bool wantsToPlay = false;
+    do {
     Game currentGame(getMapSize());
     currentGame.Start();
     currentGame.HandleGameOver();
-     return 0;
+    wantsToPlay = currentGame.StillWantsToPlay();
+    } while(wantsToPlay);
+    return 0;
 }

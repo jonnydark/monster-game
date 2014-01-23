@@ -247,9 +247,6 @@ void Game::HandleGameOver() {
         std::cout << "\nPardon?\n\nPlay again? (y/n): ";
       }
     }
-    if(_isPlaying) {
-      Start();
-    }
 }
 
 void Game::CheckSurroundingSpaces() {
