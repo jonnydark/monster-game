@@ -55,3 +55,18 @@ string character::healthBar() {
   return bar.str();
 }
 
+dungeon_map::Coords character::NorthCoords() const {
+  return { xPos, yPos-1 };
+}
+
+dungeon_map::Coords character::SouthCoords() const {
+  return { xPos, yPos+1 };
+}
+
+dungeon_map::Coords character::WestCoords() const {
+  return { xPos-1, yPos };
+}
+
+dungeon_map::Coords character::EastCoords() const {
+  return { xPos+1, yPos };
+}

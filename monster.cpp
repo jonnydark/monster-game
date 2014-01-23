@@ -13,6 +13,31 @@
 
 using namespace std;
 
+void Monster::MoveNorth() {
+  if(yPos > 1) {
+    yPos -= 1;
+  }
+}
+
+void Monster::MoveSouth() {
+  if(yPos < _boundry) {
+    yPos += 1;
+  }
+}
+
+void Monster::MoveWest() {
+  if(xPos > 1) {
+    xPos -= 1;
+  }
+}
+
+void Monster::MoveEast() {
+  if(xPos < _boundry) {
+    xPos += 1;
+  }
+}
+
+
 // Function works on a random number generator.
 // The numbers are between 0 and 6. 0123 are nsew
 // Numbers 456 are just waiting
@@ -22,23 +47,23 @@ void Monster::move(const dungeon_map::map &mp) {
   //if the time bomb has been used, always wait
   switch(n) {
     case 0:
-      if(yPos > 1 && mp.index(xPos, yPos-1)->getType() != 1) {
-        yPos -= 1;
+      if(mp.HasSafeSpaceAt(NorthCoords())) {
+        MoveNorth();
         break;
       }
     case 1:
-      if(yPos < mp.getSide() && mp.index(xPos, yPos+1)->getType() != 1) {
-        yPos += 1;
+      if(mp.HasSafeSpaceAt(SouthCoords())) {
+        MoveSouth();
         break;
       }
     case 2:
-      if(xPos < mp.getSide() && mp.index(xPos+1, yPos)->getType() != 1) {
-        xPos += 1;
+      if(mp.HasSafeSpaceAt(EastCoords())) {
+        MoveEast();
         break;
       }
     case 3:
-      if(xPos > 1 && mp.index(xPos-1, yPos)->getType() != 1) {
-        xPos -= 1;
+      if(mp.HasSafeSpaceAt(WestCoords())) {
+        MoveWest();
         break;
       }
     default:

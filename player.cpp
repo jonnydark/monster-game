@@ -142,18 +142,3 @@ void Player::AddItemToInventory(const items::ItemID newItem) {
   }
 }
 
-dungeon_map::Coords Player::NorthCoords() const {
-  return { xPos, yPos-1 };
-}
-
-dungeon_map::Coords Player::SouthCoords() const {
-  return { xPos, yPos+1 };
-}
-
-dungeon_map::Coords Player::WestCoords() const {
-  return { xPos-1, yPos };
-}
-
-dungeon_map::Coords Player::EastCoords() const {
-  return { xPos+1, yPos };
-}

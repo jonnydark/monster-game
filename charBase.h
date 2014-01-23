@@ -35,10 +35,18 @@ namespace charBase {
 
       // Location accessors
       int x() const { return xPos; }
-
       int y() const { return yPos; }
 
+      virtual void MoveNorth()=0;
+      virtual void MoveSouth()=0;
+      virtual void MoveEast()=0;
+      virtual void MoveWest()=0;
+
       dungeon_map::Coords Coords() const { return { xPos, yPos }; }
+      dungeon_map::Coords NorthCoords() const;
+      dungeon_map::Coords SouthCoords() const;
+      dungeon_map::Coords WestCoords() const;
+      dungeon_map::Coords EastCoords() const;
 
       // Health accessor
       int hp() const { return health; }
@@ -48,7 +56,6 @@ namespace charBase {
       // max health of the monster later
       std::string healthBar();
              
-
       // Function called when a character is hit
       // or healed. Takes an integer as an argument.
       // That value is added to the current health.

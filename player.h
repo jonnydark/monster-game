@@ -50,10 +50,6 @@ class Player : public charBase::character
     int invSize() const { return inventory.size(); }
     void AddItemToInventory(const items::ItemID newItem);
 
-    dungeon_map::Coords NorthCoords() const;
-    dungeon_map::Coords SouthCoords() const;
-    dungeon_map::Coords WestCoords() const;
-    dungeon_map::Coords EastCoords() const;
 };
 
 #endif

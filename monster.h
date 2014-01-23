@@ -31,6 +31,10 @@ class map;
       // The Monster can move in any direction that isn't off the map
       // or on to a pitfall. Direction of movement is random
       void move(const dungeon_map::map &mp);
+      void MoveNorth();
+      void MoveSouth();
+      void MoveEast();
+      void MoveWest();
 
       // The Monster fights. This should never be called
       // outside of a battle.
