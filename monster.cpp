@@ -7,11 +7,9 @@
 
 #include "monster.h"
 #include "player.h"
-#include "map/map.h"
+#include "map.h"
 
 #include <cstdlib>
-
-using namespace std;
 
 void Monster::MoveNorth() {
   if(yPos > 1) {
@@ -79,31 +77,21 @@ void Monster::fight(Player &p) {
   switch(move) {
     case 0:
       // Hadouken
-      cout << "\n\n\tThe monster turned side on to you, spread its legs for better stance\n"
-              "\tand with its mighty hands concentrated a glowing blue ball of energy.\n"
-              "\tThen, in one swift movement...\n\nHADOUKEN!\n\nThe monster did 30 damage."
-              "\tThat hurt.\n\n";
+      Print::MonsterHadouken();
       p.hitOrHeal(-30);
       break;
     case 1:
       // Mockery
-      cout << "\n\n\tThe monster took a step back, pushed its chest out and shouted at you.\n"
-              "\t\"YOU FIGHT LIKE A DAIRY FARMER!\" it said. You don't really know what it\n"
-              "\tmeant by this, but far away an aging pirate by the name of Guybrush\n"
-              "\tThreepwood shed a tear in mourning of his former glory and continued\n"
-              "\t to drown his sorrows in grog.\n\n";
+      Print::MonsterMockery();
       break;
     case 2:
       // A can of whoop-ass
-      cout << "\n\n\tThe monster withdrew from his pocket a can not dissimelar to a \n"
-              "\t coke can. You can make out the writing on the side to read \"Whoop-Ass(TM)\"\n"
-              "\tThe monster opened the can with a satisfying \"tsssk\" sound, and you\n"
-              "\tsustained 40 damage; it's super effective!\n\n";
+      Print::MonsterWhoopAss();
       p.hitOrHeal(-40);
       break;
     default:
       // Tackle
-      cout << "\n\n\tThe monster used tackle and did 10 damage\n\n";
+      Print::MonsterTackle();
       p.hitOrHeal(-10);
       break;
   }

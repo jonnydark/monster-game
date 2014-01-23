@@ -70,8 +70,32 @@ class Print
     static void StartBattle() {
       std::cout << "\n\nOH MY GIDDY AUNT! IT'S THE MONSTER! It's very scary!\n\n\tPrepare to fight!";
     }
-
+    
+    static void MonsterHadouken() {
+      std::cout << "\n\n\tThe monster turned side on to you, spread its legs for better stance\n"
+              "\tand with its mighty hands concentrated a glowing blue ball of energy.\n"
+              "\tThen, in one swift movement...\n\nHADOUKEN!\n\nThe monster did 30 damage."
+              "\tThat hurt.\n\n";
+    }
   
+    static void MonsterMockery() {
+      std::cout << "\n\n\tThe monster took a step back, pushed its chest out and shouted at you.\n"
+              "\t\"YOU FIGHT LIKE A DAIRY FARMER!\" it said. You don't really know what it\n"
+              "\tmeant by this, but far away an aging pirate by the name of Guybrush\n"
+              "\tThreepwood shed a tear in mourning of his former glory and continued\n"
+              "\t to drown his sorrows in grog.\n\n";
+    }
+
+    static void MonsterWhoopAss() {
+      std::cout << "\n\n\tThe monster withdrew from his pocket a can not dissimelar to a \n"
+              "\t coke can. You can make out the writing on the side to read \"Whoop-Ass(TM)\"\n"
+              "\tThe monster opened the can with a satisfying \"tsssk\" sound, and you\n"
+              "\tsustained 40 damage; it's super effective!\n\n";
+    }
+
+    static void MonsterTackle() {
+      std::cout << "\n\n\tThe monster used tackle and did 10 damage\n\n";
+    }
 
 };
 

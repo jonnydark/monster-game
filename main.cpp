@@ -1,8 +1,5 @@
 /*
  * main.cpp
- *
- * This file contains the main loop and the status funcition
- * It also contains the global variable timeBombTime 
  */
 
 #include <ctime>
@@ -20,10 +17,10 @@ int main()
     Print::AsciiArtTitle();  
     bool wantsToPlay = false;
     do {
-    Game currentGame(getMapSize());
-    currentGame.Start();
-    currentGame.HandleGameOver();
-    wantsToPlay = currentGame.StillWantsToPlay();
+      Game currentGame(getMapSize());
+      currentGame.Start();
+      currentGame.HandleGameOver();
+      wantsToPlay = currentGame.StillWantsToPlay();
     } while(wantsToPlay);
     return 0;
 }
