@@ -1,6 +1,4 @@
 #include <iostream>
-#include <ctime>
-#include <cstdlib>
 #include <string>
 #include <sstream>
 
@@ -19,7 +17,6 @@ Game::Game(unsigned int mapSize):
   _player(_map),
   _monster(_map)
 {
-   srand((unsigned)time(NULL));
 }
 
 unsigned int Game::_timeBombTime = 0;
@@ -45,7 +42,7 @@ void Game::GameLoop() {
         continue;
       }
       // The monster's turn
-      if(_timeBombTime > 0) {
+      if(_timeBombTime == 0) {
         _monster.move(_map);
       }
       // Are the player and the monster on the same space?

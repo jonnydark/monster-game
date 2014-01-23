@@ -5,6 +5,9 @@
  * It also contains the global variable timeBombTime 
  */
 
+#include <ctime>
+#include <cstdlib>
+
 #include "input.h"
 #include "game.h"
 #include "copy.h"
@@ -12,6 +15,7 @@
 
 int main()
 {
+   srand((unsigned)time(NULL));
   // Welcome message!
     Print::AsciiArtTitle();  
     Game currentGame(getMapSize());
