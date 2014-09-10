@@ -1,13 +1,14 @@
 /*
  * monster.cpp
  *
- * Monster definitions 
+ * Monster definitions
  */
 
 
 #include "monster.h"
 #include "player.h"
 #include "map.h"
+#include "copy.h"
 
 #include <cstdlib>
 
